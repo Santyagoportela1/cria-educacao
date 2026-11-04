@@ -143,7 +143,7 @@
 
     <!-- TRÊS DISCIPLINAS PRINCIPAIS -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-sky-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
+      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-sky-400 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 group-hover:scale-105 transition">
             <i data-lucide="book-open" class="w-6 h-6"></i>
@@ -156,7 +156,7 @@
         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
       </div>
 
-      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-purple-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
+      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-purple-400 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-105 transition">
             <i data-lucide="cpu" class="w-6 h-6"></i>
@@ -169,7 +169,7 @@
         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
       </div>
 
-      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-emerald-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
+      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-emerald-400 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
           <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
             <i data-lucide="accessibility" class="w-6 h-6"></i>
@@ -183,12 +183,13 @@
       </div>
     </section>
 
-    <!-- DESTAQUES / GRELHA DINÂMICA -->
+    <!-- DESTAQUES / GRELHA DINÂMICA COM ABAS DESTACADAS -->
     <section class="space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-2">
           <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Destaques do CrIA</span>
         </div>
+        <!-- Abas com cores dinâmicas e destacadas -->
         <div class="flex items-center gap-2 overflow-x-auto pb-1" id="tabsContainer"></div>
       </div>
 
@@ -399,7 +400,7 @@
     </button>
   </div>
 
-  <!-- SCRIPT JAVASCRIPT INTEGRADO -->
+  <!-- SCRIPT JAVASCRIPT CORRIGIDO E INTEGRADO -->
   <script>
     const SUPABASE_URL = ""; 
     const SUPABASE_ANON_KEY = ""; 
@@ -634,6 +635,26 @@
         url: "https://quizlet.com",
         sourceType: "url",
         duration: "Material · PDF"
+      },
+      {
+        id: "res-4",
+        type: "audio",
+        title: "Podcast: A Ética na Inteligência Artificial",
+        subject: "IA na Educação",
+        description: "Discussão aprofundada sobre os marcos normativos na escola.",
+        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        sourceType: "url",
+        duration: "22 min"
+      },
+      {
+        id: "res-5",
+        type: "simulado",
+        title: "Simulado Diagnóstico de Gramática Adaptativa",
+        subject: "Língua Portuguesa",
+        description: "Questões comentadas com foco em análise sintática e textual.",
+        url: "https://docs.google.com",
+        sourceType: "url",
+        duration: "Avaliação · Quiz"
       }
     ];
 
@@ -654,7 +675,12 @@
         } catch(e) {}
       }
       const stored = localStorage.getItem("cria_resources_data");
-      if (stored) { try { return JSON.parse(stored); } catch(e) {} }
+      if (stored) { 
+        try { 
+          const parsed = JSON.parse(stored);
+          if (parsed && parsed.length > 0) return parsed;
+        } catch(e) {} 
+      }
       localStorage.setItem("cria_resources_data", JSON.stringify(defaultResources));
       return defaultResources;
     }
@@ -694,7 +720,7 @@
         container.innerHTML = `
           <div class="col-span-full py-12 text-center text-slate-400">
             <i data-lucide="inbox" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
-            <p class="text-sm font-semibold">Nenhum recurso encontrado.</p>
+            <p class="text-sm font-semibold">Nenhum recurso encontrado nesta categoria.</p>
           </div>
         `;
         if (window.lucide) lucide.createIcons();
@@ -886,7 +912,6 @@
       closeTabsModal();
     }
 
-    // --- LOGÓTIPO ---
     function openLogoModal() { document.getElementById("logoModal").classList.remove("hidden"); }
     function closeLogoModal() { document.getElementById("logoModal").classList.add("hidden"); }
 
