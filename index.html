@@ -50,12 +50,10 @@
         </div>
 
         <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 pl-6 border-l border-slate-200">
-          <!-- Guia Início -->
           <button onclick="navigateHome()" class="text-[#0284c7] flex items-center gap-1.5 font-semibold hover:text-sky-700 transition">
             <i data-lucide="home" class="w-4 h-4"></i> Início
           </button>
 
-          <!-- Menu Dropdown Conteúdos -->
           <div class="relative group">
             <button class="hover:text-slate-900 flex items-center gap-1 py-2 focus:outline-none">
               Conteúdos <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
@@ -71,12 +69,10 @@
             </div>
           </div>
 
-          <!-- Guia Sobre o CrIA -->
           <button onclick="showInfoModal('Sobre o CrIA Educação', 'O CrIA Educação é uma plataforma interativa desenvolvida para apoiar professores e estudantes com sequências didáticas, ferramentas de IA e recursos de educação inclusiva.')" class="hover:text-slate-900 transition">
             Sobre o CrIA
           </button>
 
-          <!-- Guia Ajuda -->
           <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize a barra flutuante no fundo da página. Pode adicionar ligações do Google Drive, YouTube ou carregar ficheiros locais com facilidade.')" class="hover:text-slate-900 transition">
             Ajuda
           </button>
@@ -85,13 +81,11 @@
 
       <!-- Notificações & Autenticação -->
       <div class="flex items-center gap-4">
-        <!-- Notificações Clicáveis -->
         <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition" title="Notificações">
           <i data-lucide="bell" class="w-5 h-5"></i>
           <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
         </button>
 
-        <!-- Botão Entrar / Sessão Ativa -->
         <div id="authHeaderContainer">
           <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
             <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> Entrar
@@ -111,7 +105,7 @@
           Conhecimento, inovação e práticas que transformam a <span class="text-[#0284c7]">educação</span>.
         </h1>
         <p class="text-slate-500 text-sm sm:text-base max-w-xl">
-          Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar[cite: 3].
+          Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar.
         </p>
 
         <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-sm max-w-xl">
@@ -231,11 +225,15 @@
 
         <div class="flex items-center my-3">
           <div class="flex-grow border-t border-slate-200"></div>
-          <span class="px-3 text-slate-400 font-bold uppercase text-[10px]">Ou manual</span>
+          <span class="px-3 text-slate-400 font-bold uppercase text-[10px]">Ou manual (com nome personalizado)</span>
           <div class="flex-grow border-t border-slate-200"></div>
         </div>
 
         <form onsubmit="handleManualLogin(event)" class="space-y-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Seu Nome ou Perfil</label>
+            <input type="text" id="manualName" required placeholder="Ex: Prof. Santyago Portela" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+          </div>
           <div>
             <label class="block font-bold text-slate-700 mb-1">E-mail Profissional</label>
             <input type="email" id="manualEmail" required placeholder="professor@escola.com" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
@@ -369,8 +367,15 @@
         <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <form onsubmit="handleSaveLogo(event)" class="space-y-3">
-        <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs">
-        <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border rounded-lg outline-none">
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Carregar Imagem do Computador</label>
+          <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs">
+        </div>
+        <div class="text-center font-bold text-slate-400 py-0.5">OU</div>
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Link de Imagem na Web (URL)</label>
+          <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border rounded-lg outline-none">
+        </div>
         <div class="flex justify-between items-center pt-2">
           <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold">Restaurar Padrão</button>
           <button type="submit" class="px-4 py-1.5 bg-sky-600 text-white rounded-lg font-bold">Guardar Logo</button>
@@ -400,7 +405,7 @@
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
 
-    // --- AUTENTICAÇÃO ---
+    // --- AUTENTICAÇÃO E PERFIL PRÓPRIO ---
     function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
     function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
 
@@ -410,7 +415,8 @@
           await supabaseClient.auth.signInWithOAuth({ provider: providerName });
         } catch(e) { alert("Erro: " + e.message); }
       } else {
-        const fakeUser = { email: `utilizador_${providerName}@cria.edu` };
+        const name = prompt("Insira o seu nome de perfil para esta conta:", "Santyago Portela");
+        const fakeUser = { name: name || `Utilizador ${providerName}`, email: `conta_${providerName}@cria.edu` };
         localStorage.setItem("cria_user_session", JSON.stringify(fakeUser));
         updateAuthHeader(fakeUser);
         closeAuthModal();
@@ -420,6 +426,7 @@
 
     async function handleManualLogin(e) {
       e.preventDefault();
+      const name = document.getElementById("manualName").value.trim();
       const email = document.getElementById("manualEmail").value.trim();
       const password = document.getElementById("manualPassword").value;
 
@@ -433,7 +440,7 @@
         }
       }
 
-      const user = { email };
+      const user = { name, email };
       localStorage.setItem("cria_user_session", JSON.stringify(user));
       updateAuthHeader(user);
       closeAuthModal();
@@ -450,12 +457,13 @@
     function updateAuthHeader(user) {
       const container = document.getElementById("authHeaderContainer");
       if (!container) return;
+      const displayName = user.name || user.email.split('@')[0];
       container.innerHTML = `
-        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
           <div class="w-7 h-7 rounded-full bg-[#0284c7] text-white flex items-center justify-center font-bold text-xs">
-            ${user.email.charAt(0).toUpperCase()}
+            ${displayName.charAt(0).toUpperCase()}
           </div>
-          <span class="text-xs font-semibold text-slate-700 hidden sm:inline">${user.email}</span>
+          <span class="text-xs font-semibold text-slate-700 hidden sm:inline">${displayName}</span>
           <button onclick="handleLogout()" class="text-red-500 hover:text-red-700 text-xs font-bold ml-2">Sair</button>
         </div>
       `;
@@ -873,6 +881,24 @@
       closeTabsModal();
     }
 
+    // --- LOGÓTIPO ---
+    function openLogoModal() { document.getElementById("logoModal").classList.remove("hidden"); }
+    function closeLogoModal() { document.getElementById("logoModal").classList.add("hidden"); }
+
+    function loadCustomLogo() {
+      const saved = localStorage.getItem("cria_custom_logo");
+      const img = document.getElementById("siteLogo");
+      const fallback = document.getElementById("siteLogoFallback");
+      if (saved) {
+        img.src = saved;
+        img.classList.remove("hidden");
+        fallback.classList.add("hidden");
+      } else {
+        img.classList.add("hidden");
+        fallback.classList.remove("hidden");
+      }
+    }
+
     function handleSaveLogo(e) {
       e.preventDefault();
       const file = document.getElementById("logoFileInput").files[0];
@@ -892,7 +918,8 @@
 
     function handleResetLogo() {
       localStorage.removeItem("cria_custom_logo");
-      location.reload();
+      loadCustomLogo();
+      closeLogoModal();
     }
 
     window.addEventListener("DOMContentLoaded", async () => {
