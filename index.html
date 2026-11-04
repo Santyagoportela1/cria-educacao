@@ -40,17 +40,17 @@
   <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logótipo & Navegação Superior -->
-      <div class="flex items-center gap-6">
+      <!-- Logótipo & Navegação -->
+      <div class="flex items-center gap-3 sm:gap-6">
         <div class="flex items-center gap-2 cursor-pointer" onclick="openLogoModal()" title="Clique para alterar a logo">
           <div id="siteLogoFallback" class="w-9 h-9 rounded-xl bg-sky-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-sky-600/20">
             A
           </div>
-          <img id="siteLogo" src="" alt="Logo" class="h-9 w-auto object-contain hidden">
-          <span class="text-xl font-extrabold tracking-tight text-slate-900">CrIA <span class="theme-text text-sky-600">Educação</span></span>
+          <img id="siteLogo" src="" alt="Logo" class="h-8 sm:h-9 w-auto object-contain hidden">
+          <span class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900">CrIA <span class="theme-text text-sky-600">Educação</span></span>
         </div>
 
-        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 pl-6 border-l border-slate-200">
+        <nav class="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium text-slate-600 pl-4 sm:pl-6 border-l border-slate-200">
           <button onclick="navigateHome()" class="theme-text text-sky-600 flex items-center gap-1.5 font-semibold hover:opacity-80 transition">
             <i data-lucide="home" class="w-4 h-4"></i> Início
           </button>
@@ -71,25 +71,24 @@
           </div>
 
           <button onclick="showInfoModal('Sobre o CrIA Educação', 'O CrIA Educação é uma plataforma interativa desenvolvida para apoiar professores e estudantes com sequências didáticas, ferramentas de IA e recursos de educação inclusiva.')" class="hover:text-slate-900 transition">
-            Sobre o CrIA
+            Sobre
           </button>
-
-          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos e personalizar o visual, utilize o botão de engrenagem flutuante no canto inferior direito.')" class="hover:text-slate-900 transition">
+          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize o botão de engrenagem flutuante no canto inferior direito.')" class="hover:text-slate-900 transition">
             Ajuda
           </button>
         </nav>
       </div>
 
       <!-- Notificações & Autenticação -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-2 sm:gap-4">
         <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition bg-slate-50 rounded-xl hover:bg-slate-100 border border-slate-200" title="Notificações">
           <i data-lucide="bell" class="w-4 h-4 text-slate-600"></i>
           <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
         </button>
 
         <div id="authHeaderContainer">
-          <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
-            <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> Entrar
+          <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
+            <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> <span class="hidden sm:inline">Entrar</span>
           </button>
         </div>
       </div>
@@ -98,102 +97,105 @@
   </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12 pb-24">
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full space-y-8 sm:space-y-12 pb-24">
     
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
-      <div class="lg:col-span-7 space-y-4">
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+    <!-- Hero Section -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-2 sm:pt-4">
+      <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
           Conhecimento, inovação e práticas que transformam a <span class="theme-text text-sky-600">educação</span>.
         </h1>
-        <p class="text-slate-600 text-sm sm:text-base max-w-xl">
+        <p class="text-slate-600 text-xs sm:text-base max-w-xl mx-auto lg:mx-0">
           Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar[cite: 3].
         </p>
 
-        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-sm max-w-xl focus-within:ring-2 focus-within:ring-sky-500 transition">
-          <div class="flex items-center gap-2 flex-grow pl-3">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+        <!-- Barra de Procura com Ação de Clique no Botão Buscar -->
+        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-1.5 sm:p-2 shadow-sm max-w-xl mx-auto lg:mx-0 focus-within:ring-2 focus-within:ring-sky-500 transition">
+          <div class="flex items-center gap-2 flex-grow pl-2 sm:pl-3">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400 shrink-0"></i>
             <input 
               type="text" 
               id="searchInput" 
-              oninput="handleSearch()"
-              placeholder="Buscar por tema, disciplina ou recurso..." 
+              onkeydown="if(event.key === 'Enter') handleSearchBtn();"
+              placeholder="Digite o tema e clique em Buscar..." 
               class="w-full text-xs text-slate-700 bg-transparent border-0 focus:outline-none focus:ring-0"
             >
           </div>
-          <button onclick="handleSearch()" class="px-6 py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-slate-800 transition shadow-md">
+          <button onclick="handleSearchBtn()" class="px-4 sm:px-6 py-2 sm:py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-slate-800 transition shadow-md shrink-0">
             Buscar
           </button>
         </div>
       </div>
 
-      <div class="lg:col-span-5 flex justify-center lg:justify-end">
-        <div class="relative w-full max-w-md">
+      <!-- Imagem Hero -->
+      <div class="lg:col-span-5 flex justify-center">
+        <div class="relative w-full max-w-sm sm:max-w-md">
           <img 
             src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" 
             alt="Materiais de Educação" 
-            class="rounded-3xl shadow-xl border border-slate-200 object-cover w-full h-64 sm:h-72"
+            class="rounded-3xl shadow-xl border border-slate-200 object-cover w-full h-52 sm:h-72"
           >
-          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-slate-100 text-xs font-bold text-slate-800 space-y-1">
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Educação</div>
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Inovação</div>
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Inclusão</div>
+          <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/95 backdrop-blur-sm p-3 sm:p-4 rounded-2xl shadow-lg border border-slate-100 text-[11px] sm:text-xs font-bold text-slate-800 space-y-1">
+            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sky-500"></span> Educação</div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500"></span> Inovação</div>
+            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500"></span> Inclusão</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- TRÊS DISCIPLINAS PRINCIPAIS -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:shadow-lg transition cursor-pointer shadow-sm group">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 group-hover:scale-105 transition">
-            <i data-lucide="book-open" class="w-6 h-6"></i>
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div onclick="filterResources('video')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-sky-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shrink-0 group-hover:scale-105 transition">
+            <i data-lucide="book-open" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
           <div>
-            <h3 class="font-bold text-sm text-slate-900">Língua Portuguesa</h3>
-            <p class="text-[11px] text-slate-500">Gramática, leitura, interpretação e mais.</p>
+            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Língua Portuguesa</h3>
+            <p class="text-[10px] sm:text-[11px] text-slate-500">Gramática, leitura e mais.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
       </div>
 
-      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:shadow-lg transition cursor-pointer shadow-sm group">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-105 transition">
-            <i data-lucide="cpu" class="w-6 h-6"></i>
+      <div onclick="filterResources('curadoria')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-purple-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 shrink-0 group-hover:scale-105 transition">
+            <i data-lucide="cpu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
           <div>
-            <h3 class="font-bold text-sm text-slate-900">Inteligência Artificial</h3>
-            <p class="text-[11px] text-slate-500">Prompts, ferramentas e uso ético.</p>
+            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Inteligência Artificial</h3>
+            <p class="text-[10px] sm:text-[11px] text-slate-500">Prompts e uso ético.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
       </div>
 
-      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:shadow-lg transition cursor-pointer shadow-sm group">
-        <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
-            <i data-lucide="accessibility" class="w-6 h-6"></i>
+      <div onclick="filterResources('flashcard')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-emerald-300 hover:shadow-lg transition cursor-pointer shadow-sm group sm:col-span-2 md:col-span-1">
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 group-hover:scale-105 transition">
+            <i data-lucide="accessibility" class="w-5 h-5 sm:w-6 sm:h-6"></i>
           </div>
           <div>
-            <h3 class="font-bold text-sm text-slate-900">Educação Inclusiva</h3>
-            <p class="text-[11px] text-slate-500">Acessibilidade, estratégias e recursos.</p>
+            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Educação Inclusiva</h3>
+            <p class="text-[10px] sm:text-[11px] text-slate-500">Acessibilidade e recursos.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
       </div>
     </section>
 
     <!-- DESTAQUES / GRELHA DINÂMICA -->
-    <section class="space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <section class="space-y-4 sm:space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="flex items-center gap-2">
-          <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Destaques do CrIA</span>
+          <span class="text-base sm:text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Destaques do CrIA</span>
         </div>
-        <div class="flex items-center gap-2 overflow-x-auto pb-1" id="tabsContainer"></div>
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-1 max-w-full" id="tabsContainer"></div>
       </div>
 
-      <div id="resourcesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      <div id="resourcesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
     </section>
 
   </main>
@@ -249,7 +251,7 @@
     </div>
   </div>
 
-  <!-- MODAL DE INFORMAÇÃO GERAL -->
+  <!-- OUTROS MODAIS (Info, Notificações, Player, Adicionar, Abas, Logo, Tema) -->
   <div id="infoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <h3 id="infoModalTitle" class="text-base font-bold text-slate-900">Título</h3>
@@ -260,7 +262,6 @@
     </div>
   </div>
 
-  <!-- MODAL DE NOTIFICAÇÕES -->
   <div id="notificationsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -270,24 +271,23 @@
       <div class="space-y-3">
         <div class="p-3.5 bg-sky-50 border border-sky-100 rounded-2xl space-y-1">
           <span class="font-bold text-sky-900 block">Novo Material Disponível</span>
-          <p class="text-sky-700">Sequências Didáticas de Língua Portuguesa atualizadas recentemente.</p>
+          <p class="text-sky-700">Sequências Didáticas atualizadas recentemente.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: REPRODUTOR MULTIMÉDIA -->
   <div id="playerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <div>
           <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-1 rounded-full">Visualizador</span>
-          <h3 id="playerTitle" class="text-base font-bold text-slate-900 mt-1">Título do Conteúdo</h3>
+          <h3 id="playerTitle" class="text-base font-bold text-slate-900 mt-1">Título</h3>
         </div>
         <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <div class="p-4 sm:p-6 flex-grow overflow-y-auto flex flex-col items-center justify-center min-h-[360px] bg-slate-950" id="playerContainer"></div>
-      <div class="px-6 py-3.5 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center text-xs">
+      <div class="p-2 sm:p-6 flex-grow overflow-y-auto flex flex-col items-center justify-center min-h-[300px] bg-slate-950" id="playerContainer"></div>
+      <div class="px-6 py-3.5 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs">
         <span id="playerMeta" class="text-slate-500">Disciplina associada</span>
         <a id="playerExternalLink" href="#" target="_blank" class="text-sky-600 hover:underline font-bold inline-flex items-center gap-1">
           Abrir em nova aba <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -296,7 +296,6 @@
     </div>
   </div>
 
-  <!-- MODAL: ADICIONAR / EDITAR PRODUTO -->
   <div id="resourceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
@@ -307,16 +306,16 @@
         <input type="hidden" id="editResourceId" value="">
         <div>
           <label class="block font-bold text-slate-700 mb-1">Título do Material</label>
-          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
+          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
         </div>
-        <div class="grid grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Formato</label>
-            <select id="inputType" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></select>
+            <select id="inputType" class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></select>
           </div>
           <div>
             <label class="block font-bold text-slate-700 mb-1">Disciplina</label>
-            <select id="inputSubject" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
+            <select id="inputSubject" class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
               <option value="Língua Portuguesa">Língua Portuguesa</option>
               <option value="IA na Educação">IA na Educação</option>
               <option value="Educação Inclusiva">Educação Inclusiva</option>
@@ -325,90 +324,78 @@
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Descrição</label>
-          <textarea id="inputDescription" rows="2" required placeholder="Resumo..." class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+          <textarea id="inputDescription" rows="2" required placeholder="Resumo..." class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></textarea>
         </div>
         <div class="border-t border-slate-100 pt-3">
           <label class="block font-bold text-slate-700 mb-1">URL Externa ou Ficheiro Local</label>
-          <input type="url" id="inputUrl" placeholder="https://..." class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500 mb-2">
-          <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
+          <input type="url" id="inputUrl" placeholder="https://..." class="w-full px-3.5 py-2.5 border rounded-xl outline-none mb-2">
+          <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 text-xs">
         </div>
         <div class="flex justify-end gap-2 pt-4">
-          <button type="button" onclick="closeResourceModal()" class="px-4 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50">Cancelar</button>
-          <button type="submit" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Guardar</button>
+          <button type="button" onclick="closeResourceModal()" class="px-4 py-2.5 border rounded-xl font-bold">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold">Guardar</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: GESTÃO DE ABAS -->
   <div id="tabsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+      <div class="flex justify-between items-center border-b pb-2">
         <h3 class="font-bold text-slate-900 text-sm">Gerenciar Abas de Formato</h3>
-        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div>
         <label class="block font-bold text-slate-700 mb-1">Nova Aba</label>
         <div class="flex gap-2">
-          <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
-          <button onclick="handleAddTab()" class="px-4 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Adicionar</button>
+          <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3 py-2 border rounded-xl outline-none">
+          <button onclick="handleAddTab()" class="px-4 py-2 bg-sky-600 text-white rounded-xl font-bold">Adicionar</button>
         </div>
       </div>
       <div id="tabsListModal" class="space-y-2 max-h-48 overflow-y-auto"></div>
     </div>
   </div>
 
-  <!-- MODAL: ALTERAR LOGÓTIPO -->
   <div id="logoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+      <div class="flex justify-between items-center border-b pb-2">
         <h3 class="font-bold text-slate-900 text-sm">Alterar Logo do Portal</h3>
-        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <form onsubmit="handleSaveLogo(event)" class="space-y-3">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Carregar Imagem do Computador</label>
-          <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
-        </div>
-        <div class="text-center font-bold text-slate-400 py-0.5">OU</div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Link de Imagem na Web (URL)</label>
-          <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
-        </div>
-        <div class="flex justify-between items-center pt-3">
-          <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold hover:underline">Restaurar Padrão</button>
-          <button type="submit" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Guardar Logo</button>
+        <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs">
+        <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border rounded-xl outline-none">
+        <div class="flex justify-between items-center pt-2">
+          <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold">Restaurar Padrão</button>
+          <button type="submit" class="px-4 py-1.5 bg-sky-600 text-white rounded-xl font-bold">Guardar Logo</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- MODAL: PERSONALIZAÇÃO VISUAL (Cores e Temas) -->
   <div id="themeModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
-        <h3 class="font-bold text-slate-900 text-sm">Personalização Visual do Portal</h3>
-        <button onclick="closeThemeModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 class="font-bold text-slate-900 text-sm">Personalização Visual</h3>
+        <button onclick="closeThemeModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <div class="space-y-4">
-        <div>
-          <label class="block font-bold text-slate-700 mb-2">Escolha a Cor de Destaque:</label>
-          <div class="flex items-center gap-3">
-            <button onclick="setThemeColor('sky', '#0284c7')" class="w-8 h-8 rounded-full bg-sky-600 focus:ring-2 ring-offset-2 ring-sky-600 transition" title="Azul Corporativo"></button>
-            <button onclick="setThemeColor('emerald', '#059669')" class="w-8 h-8 rounded-full bg-emerald-600 focus:ring-2 ring-offset-2 ring-emerald-600 transition" title="Verde Esmeralda"></button>
-            <button onclick="setThemeColor('purple', '#7c3aed')" class="w-8 h-8 rounded-full bg-purple-600 focus:ring-2 ring-offset-2 ring-purple-600 transition" title="Roxo Educacional"></button>
-            <button onclick="setThemeColor('amber', '#d97706')" class="w-8 h-8 rounded-full bg-amber-600 focus:ring-2 ring-offset-2 ring-amber-600 transition" title="Laranja Inovação"></button>
-            <button onclick="setThemeColor('rose', '#e11d48')" class="w-8 h-8 rounded-full bg-rose-600 focus:ring-2 ring-offset-2 ring-rose-600 transition" title="Rosa Criativo"></button>
-          </div>
+      <div class="space-y-3">
+        <label class="block font-bold text-slate-700">Escolha a Cor de Destaque:</label>
+        <div class="flex items-center gap-3">
+          <button onclick="setThemeColor('#0284c7')" class="w-8 h-8 rounded-full bg-sky-600 focus:ring-2 ring-offset-2 ring-sky-600"></button>
+          <button onclick="setThemeColor('#059669')" class="w-8 h-8 rounded-full bg-emerald-600 focus:ring-2 ring-offset-2 ring-emerald-600"></button>
+          <button onclick="setThemeColor('#7c3aed')" class="w-8 h-8 rounded-full bg-purple-600 focus:ring-2 ring-offset-2 ring-purple-600"></button>
+          <button onclick="setThemeColor('#d97706')" class="w-8 h-8 rounded-full bg-amber-600 focus:ring-2 ring-offset-2 ring-amber-600"></button>
+          <button onclick="setThemeColor('#e11d48')" class="w-8 h-8 rounded-full bg-rose-600 focus:ring-2 ring-offset-2 ring-rose-600"></button>
         </div>
       </div>
       <div class="text-right pt-2">
-        <button onclick="closeThemeModal()" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl font-bold hover:bg-slate-800 transition">Concluído</button>
+        <button onclick="closeThemeModal()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold">Concluído</button>
       </div>
     </div>
   </div>
 
-  <!-- BOTÃO FLUTUANTE RETRÁTIL (Canto Inferior Direito) -->
+  <!-- BOTÃO FLUTUANTE RETRÁTIL -->
   <div class="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-2">
     <div id="floatingAdminMenu" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-3 shadow-2xl flex flex-col gap-2 hidden transition-all">
       <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition shadow-sm">
@@ -426,79 +413,51 @@
     </button>
   </div>
 
-  <!-- SCRIPT JAVASCRIPT CORRIGIDO E INTEGRADO -->
+  <!-- SCRIPT JAVASCRIPT OTIMIZADO -->
   <script>
     const SUPABASE_URL = ""; 
     const SUPABASE_ANON_KEY = ""; 
-    
     let supabaseClient = null;
     if (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase) {
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
 
-    function toggleFloatingMenu() {
-      document.getElementById("floatingAdminMenu").classList.toggle("hidden");
-    }
-
+    function toggleFloatingMenu() { document.getElementById("floatingAdminMenu").classList.toggle("hidden"); }
     function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
     function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
-
     function openThemeModal() { document.getElementById("themeModal").classList.remove("hidden"); toggleFloatingMenu(); }
     function closeThemeModal() { document.getElementById("themeModal").classList.add("hidden"); }
 
-    function setThemeColor(colorName, hexCode) {
-      localStorage.setItem("cria_theme_color", hexCode);
-      applyThemeColor(hexCode);
+    function setThemeColor(hex) {
+      localStorage.setItem("cria_theme_color", hex);
+      applyThemeColor(hex);
     }
-
     function applyThemeColor(hex) {
       document.documentElement.style.setProperty('--primary-color', hex);
       document.querySelectorAll('.theme-text').forEach(el => el.style.color = hex);
     }
 
     async function loginWithProvider(providerName) {
-      if (supabaseClient) {
-        try {
-          await supabaseClient.auth.signInWithOAuth({ provider: providerName });
-        } catch(e) { alert("Erro: " + e.message); }
-      } else {
-        const name = prompt("Insira o seu nome de perfil para esta conta:", "Santyago Portela");
-        const fakeUser = { name: name || `Utilizador ${providerName}`, email: `conta_${providerName}@cria.edu` };
-        localStorage.setItem("cria_user_session", JSON.stringify(fakeUser));
-        updateAuthHeader(fakeUser);
-        closeAuthModal();
-        alert(`Sessão iniciada com sucesso via ${providerName.toUpperCase()}!`);
-      }
+      const name = prompt("Insira o seu nome de perfil:", "Santyago Portela");
+      const fakeUser = { name: name || `Utilizador ${providerName}`, email: `conta_${providerName}@cria.edu` };
+      localStorage.setItem("cria_user_session", JSON.stringify(fakeUser));
+      updateAuthHeader(fakeUser);
+      closeAuthModal();
     }
 
     async function handleManualLogin(e) {
       e.preventDefault();
       const name = document.getElementById("manualName").value.trim();
       const email = document.getElementById("manualEmail").value.trim();
-      const password = document.getElementById("manualPassword").value;
-
-      if (supabaseClient) {
-        try {
-          const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
-          if (error) { await supabaseClient.auth.signUp({ email, password }); }
-        } catch(err) {
-          alert("Erro: " + err.message);
-          return;
-        }
-      }
-
       const user = { name, email };
       localStorage.setItem("cria_user_session", JSON.stringify(user));
       updateAuthHeader(user);
       closeAuthModal();
-      alert("Sessão iniciada com sucesso!");
     }
 
     function checkActiveSession() {
       const session = localStorage.getItem("cria_user_session");
-      if (session) {
-        try { updateAuthHeader(JSON.parse(session)); } catch(e) {}
-      }
+      if (session) { try { updateAuthHeader(JSON.parse(session)); } catch(e) {} }
     }
 
     function updateAuthHeader(user) {
@@ -506,18 +465,17 @@
       if (!container) return;
       const displayName = user.name || user.email.split('@')[0];
       container.innerHTML = `
-        <div class="flex items-center gap-3 bg-white border border-slate-200 px-3.5 py-2 rounded-2xl shadow-sm">
-          <div class="w-7 h-7 rounded-full bg-sky-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">
+        <div class="flex items-center gap-2 sm:gap-3 bg-white border border-slate-200 px-3 py-1.5 rounded-2xl shadow-sm">
+          <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-sky-600 text-white flex items-center justify-center font-bold text-xs">
             ${displayName.charAt(0).toUpperCase()}
           </div>
-          <span class="text-xs font-semibold text-slate-700 hidden sm:inline">${displayName}</span>
-          <button onclick="handleLogout()" class="text-red-500 hover:text-red-700 text-xs font-bold ml-2">Sair</button>
+          <span class="text-xs font-semibold text-slate-700 hidden md:inline">${displayName}</span>
+          <button onclick="handleLogout()" class="text-red-500 hover:text-red-700 text-xs font-bold ml-1">Sair</button>
         </div>
       `;
     }
 
     async function handleLogout() {
-      if (supabaseClient) await supabaseClient.auth.signOut();
       localStorage.removeItem("cria_user_session");
       location.reload();
     }
@@ -612,7 +570,7 @@
       tabs.forEach(tab => {
         const btn = document.createElement("button");
         const isActive = currentFilter === tab.id;
-        btn.className = `tab-btn px-4 py-2 rounded-full text-xs font-semibold transition ${
+        btn.className = `tab-btn px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold transition shrink-0 ${
           isActive ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/20' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
         }`;
         btn.innerText = tab.label;
@@ -621,7 +579,7 @@
       });
 
       const manageBtn = document.createElement("button");
-      manageBtn.className = "px-2.5 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition border border-slate-200 bg-white";
+      manageBtn.className = "px-2.5 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition border border-slate-200 bg-white shrink-0";
       manageBtn.title = "Gerenciar Abas";
       manageBtn.innerHTML = `<i data-lucide="settings-2" class="w-4 h-4"></i>`;
       manageBtn.onclick = openTabsModal;
@@ -644,82 +602,24 @@
       });
     }
 
-    // Lista rica inicial padrão garantindo que vídeos, flashcards e simulados apareçam de imediato
     const defaultResources = [
-      {
-        id: "res-1",
-        type: "video",
-        title: "Sequências Didáticas: planejamento e aplicação",
-        subject: "Língua Portuguesa",
-        description: "Estratégias práticas para criar atividades significativas.",
-        url: "https://www.w3schools.com/html/mov_bbb.mp4",
-        sourceType: "url",
-        duration: "15 min"
-      },
-      {
-        id: "res-2",
-        type: "curadoria",
-        title: "10 Prompts para Professores",
-        subject: "IA na Educação",
-        description: "Sugestões prontas para otimizar seu trabalho em sala e na escola.",
-        url: "https://drive.google.com",
-        sourceType: "url",
-        duration: "Guia · PDF"
-      },
-      {
-        id: "res-3",
-        type: "flashcard",
-        title: "Recursos para uma educação mais acessível",
-        subject: "Educação Inclusiva",
-        description: "Materiais e estratégias para incluir todos os estudantes.",
-        url: "https://quizlet.com",
-        sourceType: "url",
-        duration: "Material · PDF"
-      },
-      {
-        id: "res-4",
-        type: "audio",
-        title: "Podcast: A Ética na Inteligência Artificial",
-        subject: "IA na Educação",
-        description: "Discussão aprofundada sobre os marcos normativos na escola.",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        sourceType: "url",
-        duration: "22 min"
-      },
-      {
-        id: "res-5",
-        type: "simulado",
-        title: "Simulado Diagnóstico de Gramática Adaptativa",
-        subject: "Língua Portuguesa",
-        description: "Questões comentadas com foco em análise sintática e textual.",
-        url: "https://docs.google.com",
-        sourceType: "url",
-        duration: "Avaliação · Quiz"
-      }
+      { id: "res-1", type: "video", title: "Sequências Didáticas: Planejamento", subject: "Língua Portuguesa", description: "Estratégias práticas para criar atividades significativas.", url: "https://www.w3schools.com/html/mov_bbb.mp4", sourceType: "url", duration: "15 min" },
+      { id: "res-2", type: "curadoria", title: "10 Prompts para Professores", subject: "IA na Educação", description: "Sugestões prontas para otimizar seu trabalho em sala.", url: "https://drive.google.com", sourceType: "url", duration: "Guia · PDF" },
+      { id: "res-3", type: "flashcard", title: "Recursos para Educação Inclusiva", subject: "Educação Inclusiva", description: "Materiais e estratégias para incluir todos os estudantes.", url: "https://quizlet.com", sourceType: "url", duration: "Material · PDF" },
+      { id: "res-4", type: "audio", title: "Podcast: Ética na Inteligência Artificial", subject: "IA na Educação", description: "Discussão aprofundada sobre os marcos normativos.", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", sourceType: "url", duration: "22 min" },
+      { id: "res-5", type: "simulado", title: "Simulado Diagnóstico de Gramática", subject: "Língua Portuguesa", description: "Questões comentadas com foco em análise sintática.", url: "https://docs.google.com", sourceType: "url", duration: "Avaliação" }
     ];
 
     let currentFilter = 'all';
     let currentBlobUrl = null;
 
     async function getStoredResources() {
-      if (supabaseClient) {
-        try {
-          const { data, error } = await supabaseClient.from("resources").select("*").order("created_at", { ascending: false });
-          if (!error && data && data.length > 0) {
-            return data.map(d => ({
-              id: d.id, type: d.type, title: d.title, subject: d.subject,
-              description: d.description, url: d.url, sourceType: d.source_type || "url",
-              fileName: d.file_name, mimeType: d.mime_type, duration: d.duration || ""
-            }));
-          }
-        } catch(e) {}
-      }
       const stored = localStorage.getItem("cria_resources_data");
-      if (stored) { 
-        try { 
+      if (stored) {
+        try {
           const parsed = JSON.parse(stored);
           if (parsed && parsed.length > 0) return parsed;
-        } catch(e) {} 
+        } catch(e) {}
       }
       localStorage.setItem("cria_resources_data", JSON.stringify(defaultResources));
       return defaultResources;
@@ -745,14 +645,14 @@
     async function renderGrid() {
       const all = await getStoredResources();
       const searchEl = document.getElementById("searchInput");
-      const term = searchEl ? searchEl.value.toLowerCase() : "";
+      const term = searchEl ? searchEl.value.toLowerCase().trim() : "";
       const container = document.getElementById("resourcesGrid");
       if (!container) return;
       container.innerHTML = "";
 
       const filtered = all.filter(item => {
         const matchesCategory = (currentFilter === 'all') || (item.type === currentFilter);
-        const matchesSearch = item.title.toLowerCase().includes(term) || item.description.toLowerCase().includes(term) || item.subject.toLowerCase().includes(term);
+        const matchesSearch = !term || item.title.toLowerCase().includes(term) || item.description.toLowerCase().includes(term) || item.subject.toLowerCase().includes(term);
         return matchesCategory && matchesSearch;
       });
 
@@ -760,7 +660,7 @@
         container.innerHTML = `
           <div class="col-span-full py-12 text-center text-slate-400">
             <i data-lucide="inbox" class="w-10 h-10 mx-auto mb-2 opacity-40"></i>
-            <p class="text-sm font-semibold">Nenhum recurso encontrado nesta categoria.</p>
+            <p class="text-sm font-semibold">Nenhum recurso encontrado.</p>
           </div>
         `;
         if (window.lucide) lucide.createIcons();
@@ -769,7 +669,7 @@
 
       filtered.forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-300 hover:shadow-lg transition shadow-sm";
+        card.className = "bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-300 hover:shadow-lg transition shadow-sm";
 
         let iconName = "video";
         let badgeColor = "bg-sky-50 text-sky-700 border border-sky-100";
@@ -779,29 +679,29 @@
         if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-emerald-50 text-emerald-700 border border-emerald-100"; itemIcon = "help-circle"; }
 
         card.innerHTML = `
-          <div class="space-y-4">
+          <div class="space-y-3 sm:space-y-4">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold px-3 py-1 rounded-full ${badgeColor}">${item.subject}</span>
+              <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full ${badgeColor}">${item.subject}</span>
               <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
                 <button onclick="openEditModal('${item.id}')" class="hover:text-sky-600 transition">Editar</button>
                 <span>·</span>
                 <button onclick="deleteResource('${item.id}', '${item.sourceType}')" class="hover:text-red-500 transition">Remover</button>
               </div>
             </div>
-            <div class="flex gap-4">
-              <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
-                <i data-lucide="${iconName}" class="w-6 h-6 text-slate-600"></i>
+            <div class="flex gap-3 sm:gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                <i data-lucide="${iconName}" class="w-5 h-5 sm:w-6 sm:h-6 text-slate-600"></i>
               </div>
               <div class="space-y-1">
-                <h3 class="font-bold text-sm text-slate-900 leading-snug">${item.title}</h3>
-                <p class="text-xs text-slate-500">${item.description}</p>
+                <h3 class="font-bold text-xs sm:text-sm text-slate-900 leading-snug">${item.title}</h3>
+                <p class="text-[11px] sm:text-xs text-slate-500">${item.description}</p>
               </div>
             </div>
           </div>
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold mt-6">
+          <div class="pt-3 sm:pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold mt-4 sm:mt-6">
             <div class="flex items-center gap-1.5 text-slate-400">
               <i data-lucide="${itemIcon}" class="w-4 h-4"></i>
-              <span>${item.duration || (item.sourceType === 'indexeddb' ? 'Ficheiro Local' : 'Acessar')}</span>
+              <span>${item.duration || 'Acessar'}</span>
             </div>
             <button onclick="openResourceViewer('${item.id}')" class="text-sky-600 hover:text-sky-700 hover:underline flex items-center gap-1">
               Acessar <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -814,6 +714,11 @@
       if (window.lucide) lucide.createIcons();
     }
 
+    // Ação acionada exclusivamente ao clicar no botão "Buscar" ou Enter
+    function handleSearchBtn() {
+      renderGrid();
+    }
+
     async function openResourceViewer(id) {
       const all = await getStoredResources();
       const item = all.find(r => r.id === id);
@@ -821,7 +726,7 @@
 
       document.getElementById("playerTitle").innerText = item.title;
       document.getElementById("playerTypeBadge").innerText = item.type;
-      document.getElementById("playerMeta").innerText = item.subject + (item.sourceType === 'indexeddb' ? " · Ficheiro Local" : "");
+      document.getElementById("playerMeta").innerText = item.subject;
 
       const linkBtn = document.getElementById("playerExternalLink");
       const container = document.getElementById("playerContainer");
@@ -838,7 +743,7 @@
           return;
         }
         const actualBlob = (storedData instanceof Blob || storedData instanceof File) ? storedData : storedData.blob;
-        const mime = (storedData && storedData.mimeType) ? storedData.mimeType : (item.mimeType || "video/mp4");
+        const mime = (storedData && storedData.mimeType) ? storedData.mimeType : "video/mp4";
         currentBlobUrl = URL.createObjectURL(actualBlob);
         linkBtn.href = currentBlobUrl;
 
@@ -874,7 +779,7 @@
       const item = all.find(r => r.id === id);
       if (!item) return;
       document.getElementById("editResourceId").value = item.id;
-      document.getElementById("resourceModalTitle").innerText = "Editar Conteúdo / Produto";
+      document.getElementById("resourceModalTitle").innerText = "Editar Conteúdo";
       document.getElementById("inputTitle").value = item.title;
       document.getElementById("inputSubject").value = item.subject;
       document.getElementById("inputDescription").value = item.description;
@@ -933,11 +838,12 @@
 
     function filterResources(categoryId) {
       currentFilter = categoryId;
+      // Limpa a barra de pesquisa ao trocar de aba para evitar filtros cruzados confusos
+      const searchEl = document.getElementById("searchInput");
+      if (searchEl) searchEl.value = "";
       renderTabs();
       renderGrid();
     }
-
-    function handleSearch() { renderGrid(); }
 
     function handleAddTab() {
       const input = document.getElementById("newTabName");
