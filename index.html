@@ -30,28 +30,27 @@
       color: var(--text-main, #1e293b) !important;
     }
     .hero-bg {
-      background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
+      background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
     }
   </style>
 </head>
 <body id="siteBody" class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col hero-bg">
 
   <!-- CABEÇALHO -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+  <header class="bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logótipo & Navegação -->
       <div class="flex items-center gap-3 sm:gap-6">
         <div class="flex items-center gap-2 cursor-pointer" onclick="openLogoModal()" title="Clique para alterar a logo">
-          <div id="siteLogoFallback" class="w-9 h-9 rounded-xl bg-sky-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-sky-600/20">
+          <div id="siteLogoFallback" class="w-10 h-10 rounded-2xl bg-sky-600 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-sky-600/30">
             A
           </div>
           <img id="siteLogo" src="" alt="Logo" class="h-8 sm:h-9 w-auto object-contain hidden">
           <span class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900">CrIA <span class="theme-text text-sky-600">Educação</span></span>
         </div>
 
-        <nav class="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium text-slate-600 pl-4 sm:pl-6 border-l border-slate-200">
-          <button onclick="navigateHome()" class="theme-text text-sky-600 flex items-center gap-1.5 font-semibold hover:opacity-80 transition">
+        <nav class="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium text-slate-600 pl-6 border-l border-slate-200">
+          <button onclick="navigateHome()" class="text-sky-600 flex items-center gap-1.5 font-semibold hover:opacity-80 transition">
             <i data-lucide="home" class="w-4 h-4"></i> Início
           </button>
 
@@ -59,36 +58,35 @@
             <button class="hover:text-slate-900 flex items-center gap-1 py-2 focus:outline-none">
               Conteúdos <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
-            <div class="absolute left-0 mt-1 w-52 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 hidden group-hover:block z-50 text-xs">
-              <a href="#" onclick="filterResources('all'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700 font-semibold">Ver Todos os Conteúdos</a>
+            <div class="absolute left-0 mt-1 w-52 bg-white border border-slate-100 rounded-2xl shadow-2xl py-2 hidden group-hover:block z-50 text-xs">
+              <a href="#" onclick="filterResources('all'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700 font-semibold">Ver Todos os Conteúdos</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="#" onclick="filterResources('video'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Vídeos Educativos</a>
-              <a href="#" onclick="filterResources('audio'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Podcasts</a>
-              <a href="#" onclick="filterResources('simulado'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Simulados</a>
-              <a href="#" onclick="filterResources('flashcard'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Flashcards</a>
-              <a href="#" onclick="filterResources('curadoria'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Guias & Curadoria</a>
+              <a href="#" onclick="filterResources('video'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700">Vídeos Educativos</a>
+              <a href="#" onclick="filterResources('audio'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700">Podcasts</a>
+              <a href="#" onclick="filterResources('simulado'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700">Simulados</a>
+              <a href="#" onclick="filterResources('flashcard'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700">Flashcards</a>
+              <a href="#" onclick="filterResources('curadoria'); return false;" class="block px-4 py-2.5 hover:bg-sky-50 text-slate-700">Guias & Curadoria</a>
             </div>
           </div>
 
-          <button onclick="showInfoModal('Sobre o CrIA Educação', 'O CrIA Educação é uma plataforma interativa desenvolvida para apoiar professores e estudantes com sequências didáticas, ferramentas de IA e recursos de educação inclusiva.')" class="hover:text-slate-900 transition">
+          <button onclick="showInfoModal('Sobre o CrIA Educação', 'O CrIA Educação é um ecossistema digital interativo focado em transformar a prática pedagógica através de tecnologia de ponta, IA ética e acessibilidade.')" class="hover:text-slate-900 transition">
             Sobre
           </button>
-          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize o botão de engrenagem flutuante no canto inferior direito.')" class="hover:text-slate-900 transition">
+          <button onclick="showInfoModal('Central de Ajuda', 'Use a barra de pesquisa inteligente ou clique nas abas por categoria para explorar recursos imersivos.')" class="hover:text-slate-900 transition">
             Ajuda
           </button>
         </nav>
       </div>
 
-      <!-- Notificações & Autenticação -->
       <div class="flex items-center gap-2 sm:gap-4">
-        <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition bg-slate-50 rounded-xl hover:bg-slate-100 border border-slate-200" title="Notificações">
-          <i data-lucide="bell" class="w-4 h-4 text-slate-600"></i>
-          <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+        <button onclick="openNotificationsModal()" class="text-slate-600 hover:text-slate-900 p-2.5 relative transition bg-slate-50 rounded-2xl hover:bg-slate-100 border border-slate-200" title="Notificações">
+          <i data-lucide="bell" class="w-4 h-4"></i>
+          <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
         </button>
 
         <div id="authHeaderContainer">
-          <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
-            <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> <span class="hidden sm:inline">Entrar</span>
+          <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 rounded-2xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
+            <i data-lucide="user" class="w-4 h-4 text-sky-600"></i> <span class="hidden sm:inline">Entrar</span>
           </button>
         </div>
       </div>
@@ -97,112 +95,89 @@
   </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 w-full space-y-8 sm:space-y-12 pb-24">
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12 pb-28">
     
-    <!-- Hero Section -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center pt-2 sm:pt-4">
-      <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
-        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+    <!-- Hero Imersivo -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-50 border border-sky-100 text-sky-700 text-xs font-bold">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Plataforma de Ensino Imersivo
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
           Conhecimento, inovação e práticas que transformam a <span class="theme-text text-sky-600">educação</span>.
         </h1>
-        <p class="text-slate-600 text-xs sm:text-base max-w-xl mx-auto lg:mx-0">
+        <p class="text-slate-600 text-sm sm:text-base max-w-xl mx-auto lg:mx-0">
           Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar[cite: 3].
         </p>
 
-        <!-- Barra de Procura com Ação de Clique no Botão Buscar -->
-        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-1.5 sm:p-2 shadow-sm max-w-xl mx-auto lg:mx-0 focus-within:ring-2 focus-within:ring-sky-500 transition">
-          <div class="flex items-center gap-2 flex-grow pl-2 sm:pl-3">
+        <!-- Pesquisa Interativa -->
+        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-lg max-w-xl mx-auto lg:mx-0 focus-within:ring-2 focus-within:ring-sky-500 transition">
+          <div class="flex items-center gap-2 flex-grow pl-3">
             <i data-lucide="search" class="w-4 h-4 text-slate-400 shrink-0"></i>
             <input 
               type="text" 
               id="searchInput" 
               onkeydown="if(event.key === 'Enter') handleSearchBtn();"
-              placeholder="Digite o tema e clique em Buscar..." 
-              class="w-full text-xs text-slate-700 bg-transparent border-0 focus:outline-none focus:ring-0"
+              placeholder="O que deseja aprender hoje? (Ex: Sequências, IA...)" 
+              class="w-full text-xs sm:text-sm text-slate-700 bg-transparent border-0 focus:outline-none focus:ring-0"
             >
           </div>
-          <button onclick="handleSearchBtn()" class="px-4 sm:px-6 py-2 sm:py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-slate-800 transition shadow-md shrink-0">
+          <button onclick="handleSearchBtn()" class="px-6 py-3 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-slate-800 transition shadow-md shrink-0">
             Buscar
           </button>
+        </div>
+
+        <!-- Estatísticas Rápidas Imersivas -->
+        <div class="grid grid-cols-3 gap-4 pt-4 max-w-lg mx-auto lg:mx-0 text-center">
+          <div class="bg-white/80 border border-slate-200 p-3 rounded-2xl shadow-sm">
+            <span id="statVideos" class="block text-lg font-extrabold text-sky-600">0</span>
+            <span class="text-[10px] text-slate-500 font-semibold uppercase">Vídeos & Áudios</span>
+          </div>
+          <div class="bg-white/80 border border-slate-200 p-3 rounded-2xl shadow-sm">
+            <span id="statSimulados" class="block text-lg font-extrabold text-purple-600">0</span>
+            <span class="text-[10px] text-slate-500 font-semibold uppercase">Simulados</span>
+          </div>
+          <div class="bg-white/80 border border-slate-200 p-3 rounded-2xl shadow-sm">
+            <span id="statFlash" class="block text-lg font-extrabold text-emerald-600">0</span>
+            <span class="text-[10px] text-slate-500 font-semibold uppercase">Flashcards</span>
+          </div>
         </div>
       </div>
 
       <!-- Imagem Hero -->
       <div class="lg:col-span-5 flex justify-center">
-        <div class="relative w-full max-w-sm sm:max-w-md">
+        <div class="relative w-full max-w-md">
+          <div class="absolute -inset-1.5 bg-gradient-to-r from-sky-600 to-emerald-600 rounded-3xl blur opacity-20"></div>
           <img 
             src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" 
             alt="Materiais de Educação" 
-            class="rounded-3xl shadow-xl border border-slate-200 object-cover w-full h-52 sm:h-72"
+            class="relative rounded-3xl shadow-xl border border-slate-200 object-cover w-full h-64 sm:h-80"
           >
-          <div class="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white/95 backdrop-blur-sm p-3 sm:p-4 rounded-2xl shadow-lg border border-slate-100 text-[11px] sm:text-xs font-bold text-slate-800 space-y-1">
-            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-sky-500"></span> Educação</div>
-            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500"></span> Inovação</div>
-            <div class="flex items-center gap-2"><span class="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500"></span> Inclusão</div>
+          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-100 text-xs font-bold text-slate-800 space-y-1">
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-500 animate-ping"></span> Ambiente Ativo</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TRÊS DISCIPLINAS PRINCIPAIS -->
-    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div onclick="filterResources('video')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-sky-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
-        <div class="flex items-center gap-3 sm:gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 shrink-0 group-hover:scale-105 transition">
-            <i data-lucide="book-open" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Língua Portuguesa</h3>
-            <p class="text-[10px] sm:text-[11px] text-slate-500">Gramática, leitura e mais.</p>
-          </div>
-        </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
-      </div>
-
-      <div onclick="filterResources('curadoria')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-purple-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
-        <div class="flex items-center gap-3 sm:gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 shrink-0 group-hover:scale-105 transition">
-            <i data-lucide="cpu" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Inteligência Artificial</h3>
-            <p class="text-[10px] sm:text-[11px] text-slate-500">Prompts e uso ético.</p>
-          </div>
-        </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
-      </div>
-
-      <div onclick="filterResources('flashcard')" class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-emerald-300 hover:shadow-lg transition cursor-pointer shadow-sm group sm:col-span-2 md:col-span-1">
-        <div class="flex items-center gap-3 sm:gap-4">
-          <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 shrink-0 group-hover:scale-105 transition">
-            <i data-lucide="accessibility" class="w-5 h-5 sm:w-6 sm:h-6"></i>
-          </div>
-          <div>
-            <h3 class="font-bold text-xs sm:text-sm text-slate-900">Educação Inclusiva</h3>
-            <p class="text-[10px] sm:text-[11px] text-slate-500">Acessibilidade e recursos.</p>
-          </div>
-        </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition shrink-0"></i>
-      </div>
-    </section>
-
-    <!-- DESTAQUES / GRELHA DINÂMICA -->
-    <section class="space-y-4 sm:space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+    <!-- ABAS DE CATEGORIAS DINÂMICAS -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-2">
-          <span class="text-base sm:text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Destaques do CrIA</span>
+          <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Repositório Imersivo</span>
         </div>
-        <div class="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-1 max-w-full" id="tabsContainer"></div>
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 max-w-full" id="tabsContainer"></div>
       </div>
 
-      <div id="resourcesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6"></div>
+      <!-- GRELHA DE CONTEÚDOS -->
+      <div id="resourcesGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
   </main>
 
   <!-- MODAL DE AUTENTICAÇÃO -->
   <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-slate-100 animate-in fade-in zoom-in duration-200">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <h3 class="text-base font-bold text-slate-900">Entrar na Plataforma CrIA</h3>
         <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
@@ -251,13 +226,13 @@
     </div>
   </div>
 
-  <!-- OUTROS MODAIS (Info, Notificações, Player, Adicionar, Abas, Logo, Tema) -->
+  <!-- OUTROS MODAIS (Info, Notificações, Player Imersivo, Adicionar, Abas, Logo, Tema) -->
   <div id="infoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <h3 id="infoModalTitle" class="text-base font-bold text-slate-900">Título</h3>
       <p id="infoModalText" class="text-slate-600 leading-relaxed"></p>
       <div class="text-right pt-2">
-        <button onclick="closeInfoModal()" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 transition shadow-md shadow-sky-600/20">Entendido</button>
+        <button onclick="closeInfoModal()" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 transition shadow-md">Entendido</button>
       </div>
     </div>
   </div>
@@ -271,31 +246,40 @@
       <div class="space-y-3">
         <div class="p-3.5 bg-sky-50 border border-sky-100 rounded-2xl space-y-1">
           <span class="font-bold text-sky-900 block">Novo Material Disponível</span>
-          <p class="text-sky-700">Sequências Didáticas atualizadas recentemente.</p>
+          <p class="text-sky-700">Sequências Didáticas atualizadas recentemente no repositório.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <div id="playerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
-        <div>
-          <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-1 rounded-full">Visualizador</span>
-          <h3 id="playerTitle" class="text-base font-bold text-slate-900 mt-1">Título</h3>
-        </div>
-        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60"><i data-lucide="x" class="w-5 h-5"></i></button>
+  <!-- PLAYER IMERSIVO EM TELA CHEIA -->
+  <div id="playerModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 hidden flex flex-col justify-between p-4 sm:p-8">
+    <div class="max-w-7xl mx-auto w-full flex items-center justify-between text-white border-b border-slate-800 pb-4">
+      <div>
+        <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-400 bg-sky-950 px-3 py-1 rounded-full border border-sky-800">Visualizador</span>
+        <h3 id="playerTitle" class="text-lg sm:text-xl font-bold mt-1">Título do Conteúdo</h3>
       </div>
-      <div class="p-2 sm:p-6 flex-grow overflow-y-auto flex flex-col items-center justify-center min-h-[300px] bg-slate-950" id="playerContainer"></div>
-      <div class="px-6 py-3.5 border-t border-slate-100 bg-slate-50/50 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs">
-        <span id="playerMeta" class="text-slate-500">Disciplina associada</span>
-        <a id="playerExternalLink" href="#" target="_blank" class="text-sky-600 hover:underline font-bold inline-flex items-center gap-1">
-          Abrir em nova aba <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-        </a>
+      <div class="flex items-center gap-3">
+        <button onclick="toggleFullscreenPlayer()" class="text-slate-300 hover:text-white p-2 rounded-xl bg-slate-900 border border-slate-800 transition" title="Modo Ecrã Inteiro">
+          <i data-lucide="maximize" class="w-5 h-5"></i>
+        </button>
+        <button onclick="closePlayerModal()" class="text-slate-300 hover:text-white p-2 rounded-xl bg-slate-900 border border-slate-800 transition" title="Fechar">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
+    </div>
+
+    <div class="flex-grow flex items-center justify-center p-2 max-w-5xl mx-auto w-full" id="playerContainer"></div>
+
+    <div class="max-w-7xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-400 border-t border-slate-800 pt-4">
+      <span id="playerMeta">Disciplina associada</span>
+      <a id="playerExternalLink" href="#" target="_blank" class="text-sky-400 hover:underline font-bold inline-flex items-center gap-1">
+        Abrir em nova aba <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+      </a>
     </div>
   </div>
 
+  <!-- MODAL: ADICIONAR / EDITAR CONTEÚDO -->
   <div id="resourceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
@@ -308,7 +292,7 @@
           <label class="block font-bold text-slate-700 mb-1">Título do Material</label>
           <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Formato</label>
             <select id="inputType" class="w-full px-3.5 py-2.5 border rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></select>
@@ -339,6 +323,7 @@
     </div>
   </div>
 
+  <!-- MODAL: GESTÃO DE ABAS -->
   <div id="tabsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <div class="flex justify-between items-center border-b pb-2">
@@ -356,6 +341,7 @@
     </div>
   </div>
 
+  <!-- MODAL: ALTERAR LOGÓTIPO -->
   <div id="logoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <div class="flex justify-between items-center border-b pb-2">
@@ -373,28 +359,6 @@
     </div>
   </div>
 
-  <div id="themeModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="font-bold text-slate-900 text-sm">Personalização Visual</h3>
-        <button onclick="closeThemeModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
-      </div>
-      <div class="space-y-3">
-        <label class="block font-bold text-slate-700">Escolha a Cor de Destaque:</label>
-        <div class="flex items-center gap-3">
-          <button onclick="setThemeColor('#0284c7')" class="w-8 h-8 rounded-full bg-sky-600 focus:ring-2 ring-offset-2 ring-sky-600"></button>
-          <button onclick="setThemeColor('#059669')" class="w-8 h-8 rounded-full bg-emerald-600 focus:ring-2 ring-offset-2 ring-emerald-600"></button>
-          <button onclick="setThemeColor('#7c3aed')" class="w-8 h-8 rounded-full bg-purple-600 focus:ring-2 ring-offset-2 ring-purple-600"></button>
-          <button onclick="setThemeColor('#d97706')" class="w-8 h-8 rounded-full bg-amber-600 focus:ring-2 ring-offset-2 ring-amber-600"></button>
-          <button onclick="setThemeColor('#e11d48')" class="w-8 h-8 rounded-full bg-rose-600 focus:ring-2 ring-offset-2 ring-rose-600"></button>
-        </div>
-      </div>
-      <div class="text-right pt-2">
-        <button onclick="closeThemeModal()" class="px-4 py-2 bg-slate-900 text-white rounded-xl font-bold">Concluído</button>
-      </div>
-    </div>
-  </div>
-
   <!-- BOTÃO FLUTUANTE RETRÁTIL -->
   <div class="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-2">
     <div id="floatingAdminMenu" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-3 shadow-2xl flex flex-col gap-2 hidden transition-all">
@@ -404,16 +368,13 @@
       <button onclick="openLogoModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
         <i data-lucide="image" class="w-4 h-4 text-slate-500"></i> Alterar Logo
       </button>
-      <button onclick="openThemeModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-        <i data-lucide="palette" class="w-4 h-4 text-purple-500"></i> Personalizar Cores
-      </button>
     </div>
     <button onclick="toggleFloatingMenu()" class="w-14 h-14 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-2xl hover:bg-slate-800 transition transform hover:scale-105" title="Painel de Administração">
       <i data-lucide="settings" class="w-6 h-6 text-sky-400"></i>
     </button>
   </div>
 
-  <!-- SCRIPT JAVASCRIPT OTIMIZADO -->
+  <!-- SCRIPT JAVASCRIPT IMERSIVO -->
   <script>
     const SUPABASE_URL = ""; 
     const SUPABASE_ANON_KEY = ""; 
@@ -425,16 +386,14 @@
     function toggleFloatingMenu() { document.getElementById("floatingAdminMenu").classList.toggle("hidden"); }
     function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
     function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
-    function openThemeModal() { document.getElementById("themeModal").classList.remove("hidden"); toggleFloatingMenu(); }
-    function closeThemeModal() { document.getElementById("themeModal").classList.add("hidden"); }
 
-    function setThemeColor(hex) {
-      localStorage.setItem("cria_theme_color", hex);
-      applyThemeColor(hex);
-    }
-    function applyThemeColor(hex) {
-      document.documentElement.style.setProperty('--primary-color', hex);
-      document.querySelectorAll('.theme-text').forEach(el => el.style.color = hex);
+    function toggleFullscreenPlayer() {
+      const elem = document.getElementById("playerModal");
+      if (!document.fullscreenElement) {
+        elem.requestFullscreen().catch(err => alert("Erro ao entrar em ecrã inteiro"));
+      } else {
+        document.exitFullscreen();
+      }
     }
 
     async function loginWithProvider(providerName) {
@@ -570,7 +529,7 @@
       tabs.forEach(tab => {
         const btn = document.createElement("button");
         const isActive = currentFilter === tab.id;
-        btn.className = `tab-btn px-3.5 sm:px-4 py-2 rounded-full text-xs font-semibold transition shrink-0 ${
+        btn.className = `tab-btn px-4 py-2 rounded-full text-xs font-semibold transition shrink-0 ${
           isActive ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/20' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
         }`;
         btn.innerText = tab.label;
@@ -642,7 +601,18 @@
       return url;
     }
 
+    async function updateStats() {
+      const all = await getStoredResources();
+      const vCount = all.filter(i => i.type === 'video' || i.type === 'audio').length;
+      const sCount = all.filter(i => i.type === 'simulado').length;
+      const fCount = all.filter(i => i.type === 'flashcard').length;
+      document.getElementById("statVideos").innerText = vCount;
+      document.getElementById("statSimulados").innerText = sCount;
+      document.getElementById("statFlash").innerText = fCount;
+    }
+
     async function renderGrid() {
+      await updateStats();
       const all = await getStoredResources();
       const searchEl = document.getElementById("searchInput");
       const term = searchEl ? searchEl.value.toLowerCase().trim() : "";
@@ -669,7 +639,7 @@
 
       filtered.forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-300 hover:shadow-lg transition shadow-sm";
+        card.className = "bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-300 hover:shadow-xl transition shadow-sm transform hover:-translate-y-1 duration-200";
 
         let iconName = "video";
         let badgeColor = "bg-sky-50 text-sky-700 border border-sky-100";
@@ -679,29 +649,29 @@
         if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-emerald-50 text-emerald-700 border border-emerald-100"; itemIcon = "help-circle"; }
 
         card.innerHTML = `
-          <div class="space-y-3 sm:space-y-4">
+          <div class="space-y-4">
             <div class="flex items-center justify-between">
-              <span class="text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded-full ${badgeColor}">${item.subject}</span>
+              <span class="text-[10px] sm:text-[11px] font-bold px-3 py-1 rounded-full ${badgeColor}">${item.subject}</span>
               <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
                 <button onclick="openEditModal('${item.id}')" class="hover:text-sky-600 transition">Editar</button>
                 <span>·</span>
                 <button onclick="deleteResource('${item.id}', '${item.sourceType}')" class="hover:text-red-500 transition">Remover</button>
               </div>
             </div>
-            <div class="flex gap-3 sm:gap-4">
-              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
-                <i data-lucide="${iconName}" class="w-5 h-5 sm:w-6 sm:h-6 text-slate-600"></i>
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                <i data-lucide="${iconName}" class="w-6 h-6 text-slate-600"></i>
               </div>
               <div class="space-y-1">
-                <h3 class="font-bold text-xs sm:text-sm text-slate-900 leading-snug">${item.title}</h3>
-                <p class="text-[11px] sm:text-xs text-slate-500">${item.description}</p>
+                <h3 class="font-bold text-sm text-slate-900 leading-snug">${item.title}</h3>
+                <p class="text-xs text-slate-500">${item.description}</p>
               </div>
             </div>
           </div>
-          <div class="pt-3 sm:pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold mt-4 sm:mt-6">
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold mt-6">
             <div class="flex items-center gap-1.5 text-slate-400">
               <i data-lucide="${itemIcon}" class="w-4 h-4"></i>
-              <span>${item.duration || 'Acessar'}</span>
+              <span>${item.duration || (item.sourceType === 'indexeddb' ? 'Ficheiro Local' : 'Acessar')}</span>
             </div>
             <button onclick="openResourceViewer('${item.id}')" class="text-sky-600 hover:text-sky-700 hover:underline flex items-center gap-1">
               Acessar <i data-lucide="arrow-right" class="w-4 h-4"></i>
@@ -714,10 +684,7 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // Ação acionada exclusivamente ao clicar no botão "Buscar" ou Enter
-    function handleSearchBtn() {
-      renderGrid();
-    }
+    function handleSearchBtn() { renderGrid(); }
 
     async function openResourceViewer(id) {
       const all = await getStoredResources();
@@ -726,7 +693,7 @@
 
       document.getElementById("playerTitle").innerText = item.title;
       document.getElementById("playerTypeBadge").innerText = item.type;
-      document.getElementById("playerMeta").innerText = item.subject;
+      document.getElementById("playerMeta").innerText = item.subject + (item.sourceType === 'indexeddb' ? " · Ficheiro Local" : "");
 
       const linkBtn = document.getElementById("playerExternalLink");
       const container = document.getElementById("playerContainer");
@@ -748,13 +715,13 @@
         linkBtn.href = currentBlobUrl;
 
         if (item.type === "video") {
-          container.innerHTML = `<video controls autoplay playsinline class="w-full max-h-[70vh] rounded-lg bg-black"><source src="${currentBlobUrl}" type="${mime}"></video>`;
+          container.innerHTML = `<video controls autoplay playsinline class="w-full max-h-[70vh] rounded-2xl bg-black shadow-2xl"><source src="${currentBlobUrl}" type="${mime}"></video>`;
         } else {
           container.innerHTML = `<audio controls autoplay class="w-full max-w-md"><source src="${currentBlobUrl}" type="${mime}"></audio>`;
         }
       } else {
         linkBtn.href = item.url;
-        container.innerHTML = `<iframe src="${formatEmbedUrl(item.url)}" class="w-full h-[65vh] rounded-lg border-0 bg-black" allowfullscreen></iframe>`;
+        container.innerHTML = `<iframe src="${formatEmbedUrl(item.url)}" class="w-full h-[65vh] rounded-2xl border-0 bg-black shadow-2xl" allowfullscreen></iframe>`;
       }
       document.getElementById("playerModal").classList.remove("hidden");
       if (window.lucide) lucide.createIcons();
@@ -838,7 +805,6 @@
 
     function filterResources(categoryId) {
       currentFilter = categoryId;
-      // Limpa a barra de pesquisa ao trocar de aba para evitar filtros cruzados confusos
       const searchEl = document.getElementById("searchInput");
       if (searchEl) searchEl.value = "";
       renderTabs();
@@ -901,8 +867,6 @@
     window.addEventListener("DOMContentLoaded", async () => {
       checkActiveSession();
       loadCustomLogo();
-      const savedTheme = localStorage.getItem("cria_theme_color");
-      if (savedTheme) applyThemeColor(savedTheme);
       renderTabs();
       populateTypeSelect();
       await renderGrid();
