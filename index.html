@@ -35,22 +35,22 @@
 </head>
 <body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col hero-bg">
 
-  <!-- CABEÇALHO COM GUIAS OPERACIONAIS -->
-  <header class="bg-white border-b border-slate-100 sticky top-0 z-40 shadow-sm">
+  <!-- CABEÇALHO -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logótipo & Navegação Superior Interativa -->
+      <!-- Logótipo & Navegação Superior -->
       <div class="flex items-center gap-6">
         <div class="flex items-center gap-2 cursor-pointer" onclick="openLogoModal()" title="Clique para alterar a logo">
-          <div id="siteLogoFallback" class="w-9 h-9 rounded-lg bg-[#0284c7] flex items-center justify-center text-white font-extrabold text-lg shadow-sm">
+          <div id="siteLogoFallback" class="w-9 h-9 rounded-xl bg-sky-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-sky-600/20">
             A
           </div>
           <img id="siteLogo" src="" alt="Logo" class="h-9 w-auto object-contain hidden">
-          <span class="text-xl font-extrabold tracking-tight text-[#0f172a]">CrIA <span class="text-[#0284c7]">Educação</span></span>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900">CrIA <span class="text-sky-600">Educação</span></span>
         </div>
 
         <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 pl-6 border-l border-slate-200">
-          <button onclick="navigateHome()" class="text-[#0284c7] flex items-center gap-1.5 font-semibold hover:text-sky-700 transition">
+          <button onclick="navigateHome()" class="text-sky-600 flex items-center gap-1.5 font-semibold hover:text-sky-700 transition">
             <i data-lucide="home" class="w-4 h-4"></i> Início
           </button>
 
@@ -59,13 +59,13 @@
               Conteúdos <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
             </button>
             <div class="absolute left-0 mt-1 w-52 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 hidden group-hover:block z-50 text-xs">
-              <a href="#" onclick="filterResources('all'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700 font-semibold">Ver Todos os Conteúdos</a>
+              <a href="#" onclick="filterResources('all'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700 font-semibold">Ver Todos os Conteúdos</a>
               <div class="border-t border-slate-100 my-1"></div>
-              <a href="#" onclick="filterResources('video'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Vídeos Educativos</a>
-              <a href="#" onclick="filterResources('audio'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Podcasts</a>
-              <a href="#" onclick="filterResources('simulado'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Simulados</a>
-              <a href="#" onclick="filterResources('flashcard'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Flashcards</a>
-              <a href="#" onclick="filterResources('curadoria'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Guias & Curadoria</a>
+              <a href="#" onclick="filterResources('video'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Vídeos Educativos</a>
+              <a href="#" onclick="filterResources('audio'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Podcasts</a>
+              <a href="#" onclick="filterResources('simulado'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Simulados</a>
+              <a href="#" onclick="filterResources('flashcard'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Flashcards</a>
+              <a href="#" onclick="filterResources('curadoria'); return false;" class="block px-4 py-2 hover:bg-sky-50 text-slate-700">Guias & Curadoria</a>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
             Sobre o CrIA
           </button>
 
-          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize o botão flutuante no canto inferior direito. Pode adicionar ligações do Google Drive, YouTube ou carregar ficheiros locais com facilidade.')" class="hover:text-slate-900 transition">
+          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize o botão de engrenagem flutuante no canto inferior direito.')" class="hover:text-slate-900 transition">
             Ajuda
           </button>
         </nav>
@@ -81,9 +81,9 @@
 
       <!-- Notificações & Autenticação -->
       <div class="flex items-center gap-4">
-        <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition" title="Notificações">
-          <i data-lucide="bell" class="w-5 h-5"></i>
-          <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+        <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition bg-slate-50 rounded-xl hover:bg-slate-100 border border-slate-200" title="Notificações">
+          <i data-lucide="bell" class="w-4 h-4 text-slate-600"></i>
+          <span class="absolute top-1 right-1 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
         </button>
 
         <div id="authHeaderContainer">
@@ -101,14 +101,14 @@
     
     <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
       <div class="lg:col-span-7 space-y-4">
-        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#0f172a] leading-tight tracking-tight">
-          Conhecimento, inovação e práticas que transformam a <span class="text-[#0284c7]">educação</span>.
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">
+          Conhecimento, inovação e práticas que transformam a <span class="text-sky-600">educação</span>.
         </h1>
-        <p class="text-slate-500 text-sm sm:text-base max-w-xl">
+        <p class="text-slate-600 text-sm sm:text-base max-w-xl">
           Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar[cite: 3].
         </p>
 
-        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-sm max-w-xl">
+        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-sm max-w-xl focus-within:ring-2 focus-within:ring-sky-500 transition">
           <div class="flex items-center gap-2 flex-grow pl-3">
             <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
             <input 
@@ -119,7 +119,7 @@
               class="w-full text-xs text-slate-700 bg-transparent border-0 focus:outline-none focus:ring-0"
             >
           </div>
-          <button onclick="handleSearch()" class="px-6 py-2.5 bg-[#0f172a] text-white rounded-full text-xs font-bold hover:bg-slate-800 transition">
+          <button onclick="handleSearch()" class="px-6 py-2.5 bg-slate-900 text-white rounded-full text-xs font-bold hover:bg-slate-800 transition shadow-md">
             Buscar
           </button>
         </div>
@@ -130,12 +130,12 @@
           <img 
             src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" 
             alt="Materiais de Educação" 
-            class="rounded-3xl shadow-lg border border-slate-100 object-cover w-full h-64 sm:h-72"
+            class="rounded-3xl shadow-xl border border-slate-200 object-cover w-full h-64 sm:h-72"
           >
-          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-md border border-slate-100 text-xs font-bold text-slate-800 space-y-1">
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0284c7]"></span> Educação</div>
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#ea580c]"></span> Inovação</div>
-            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0d9488]"></span> Inclusão</div>
+          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-slate-100 text-xs font-bold text-slate-800 space-y-1">
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-sky-500"></span> Educação</div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Inovação</div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> Inclusão</div>
           </div>
         </div>
       </div>
@@ -143,9 +143,9 @@
 
     <!-- TRÊS DISCIPLINAS PRINCIPAIS -->
     <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-sky-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+          <div class="w-12 h-12 rounded-xl bg-sky-50 border border-sky-100 flex items-center justify-center text-sky-600 group-hover:scale-105 transition">
             <i data-lucide="book-open" class="w-6 h-6"></i>
           </div>
           <div>
@@ -153,25 +153,25 @@
             <p class="text-[11px] text-slate-500">Gramática, leitura, interpretação e mais.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
       </div>
 
-      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-purple-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 border border-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-105 transition">
             <i data-lucide="cpu" class="w-6 h-6"></i>
           </div>
           <div>
-            <h3 class="font-bold text-sm text-slate-900">Inteligência Artificial na Educação</h3>
+            <h3 class="font-bold text-sm text-slate-900">Inteligência Artificial</h3>
             <p class="text-[11px] text-slate-500">Prompts, ferramentas e uso ético.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
       </div>
 
-      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-200 flex items-center justify-between hover:border-emerald-300 hover:shadow-lg transition cursor-pointer shadow-sm group">
         <div class="flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 group-hover:scale-105 transition">
             <i data-lucide="accessibility" class="w-6 h-6"></i>
           </div>
           <div>
@@ -179,7 +179,7 @@
             <p class="text-[11px] text-slate-500">Acessibilidade, estratégias e recursos.</p>
           </div>
         </div>
-        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 group-hover:translate-x-1 transition"></i>
       </div>
     </section>
 
@@ -187,7 +187,7 @@
     <section class="space-y-6">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div class="flex items-center gap-2">
-          <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-[#0284c7]">| Destaques do CrIA</span>
+          <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-sky-600">Destaques do CrIA</span>
         </div>
         <div class="flex items-center gap-2 overflow-x-auto pb-1" id="tabsContainer"></div>
       </div>
@@ -199,25 +199,25 @@
 
   <!-- MODAL DE AUTENTICAÇÃO -->
   <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border border-slate-100">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <h3 class="text-base font-bold text-slate-900">Entrar na Plataforma CrIA</h3>
-        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60 transition"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
 
       <div class="p-6 space-y-4 text-xs">
         <div class="space-y-2.5">
-          <button onclick="loginWithProvider('google')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+          <button onclick="loginWithProvider('google')" class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-2xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm">
             <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.19v3.15C3.17 21.36 7.23 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.19C.43 8.11 0 9.8 0 12s.43 3.89 1.19 5.42l4.09-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.17 2.64 1.19 6.58l4.09 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
             Continuar com o Google
           </button>
 
-          <button onclick="loginWithProvider('microsoft')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+          <button onclick="loginWithProvider('microsoft')" class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-2xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm">
             <svg class="w-4 h-4" viewBox="0 0 23 23"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
             Continuar com a Microsoft
           </button>
 
-          <button onclick="loginWithProvider('apple')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+          <button onclick="loginWithProvider('apple')" class="w-full flex items-center justify-center gap-3 py-3 px-4 border border-slate-200 rounded-2xl font-semibold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition shadow-sm">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.75c.57-.69.96-1.65.85-2.61-.84.04-1.87.56-2.46 1.25-.53.6-1 1.58-.87 2.52 0 .02.02.04.04.04.95.01 1.91-.54 2.44-2.2z"/></svg>
             Continuar com o iCloud / Apple
           </button>
@@ -232,17 +232,17 @@
         <form onsubmit="handleManualLogin(event)" class="space-y-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Seu Nome ou Perfil</label>
-            <input type="text" id="manualName" required placeholder="Ex: Prof. Santyago" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+            <input type="text" id="manualName" required placeholder="Ex: Prof. Santyago" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
           </div>
           <div>
             <label class="block font-bold text-slate-700 mb-1">E-mail Profissional</label>
-            <input type="email" id="manualEmail" required placeholder="professor@escola.com" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+            <input type="email" id="manualEmail" required placeholder="professor@escola.com" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
           </div>
           <div>
             <label class="block font-bold text-slate-700 mb-1">Palavra-passe</label>
-            <input type="password" id="manualPassword" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+            <input type="password" id="manualPassword" required placeholder="••••••••" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
           </div>
-          <button type="submit" class="w-full py-2.5 bg-[#0284c7] text-white rounded-xl font-bold hover:bg-sky-700 transition shadow">
+          <button type="submit" class="w-full py-3 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 transition shadow-md shadow-sky-600/20">
             Entrar / Registar
           </button>
         </form>
@@ -252,24 +252,24 @@
 
   <!-- MODAL DE INFORMAÇÃO GERAL -->
   <div id="infoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
       <h3 id="infoModalTitle" class="text-base font-bold text-slate-900">Título</h3>
       <p id="infoModalText" class="text-slate-600 leading-relaxed"></p>
       <div class="text-right pt-2">
-        <button onclick="closeInfoModal()" class="px-5 py-2 bg-[#0284c7] text-white rounded-xl font-bold hover:bg-sky-700 transition">Entendido</button>
+        <button onclick="closeInfoModal()" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 transition shadow-md shadow-sky-600/20">Entendido</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL DE NOTIFICAÇÕES -->
   <div id="notificationsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex items-center justify-between border-b pb-3">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
         <h3 class="text-base font-bold text-slate-900">Notificações Recentes</h3>
-        <button onclick="closeNotificationsModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div class="space-y-3">
-        <div class="p-3 bg-sky-50 border border-sky-100 rounded-xl space-y-1">
+        <div class="p-3.5 bg-sky-50 border border-sky-100 rounded-2xl space-y-1">
           <span class="font-bold text-sky-900 block">Novo Material Disponível</span>
           <p class="text-sky-700">Sequências Didáticas de Língua Portuguesa atualizadas recentemente.</p>
         </div>
@@ -279,16 +279,16 @@
 
   <!-- MODAL: REPRODUTOR MULTIMÉDIA -->
   <div id="playerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+    <div class="bg-white w-full max-w-4xl rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <div>
-          <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Visualizador</span>
+          <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2.5 py-1 rounded-full">Visualizador</span>
           <h3 id="playerTitle" class="text-base font-bold text-slate-900 mt-1">Título do Conteúdo</h3>
         </div>
-        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div class="p-4 sm:p-6 flex-grow overflow-y-auto flex flex-col items-center justify-center min-h-[360px] bg-slate-950" id="playerContainer"></div>
-      <div class="px-6 py-3 border-t border-slate-200 bg-slate-50 flex justify-between items-center text-xs">
+      <div class="px-6 py-3.5 border-t border-slate-100 bg-slate-50/50 flex justify-between items-center text-xs">
         <span id="playerMeta" class="text-slate-500">Disciplina associada</span>
         <a id="playerExternalLink" href="#" target="_blank" class="text-sky-600 hover:underline font-bold inline-flex items-center gap-1">
           Abrir em nova aba <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
@@ -299,25 +299,25 @@
 
   <!-- MODAL: ADICIONAR / EDITAR PRODUTO -->
   <div id="resourceModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+    <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 bg-slate-50/50">
         <h3 id="resourceModalTitle" class="text-base font-bold text-slate-900">Cadastrar Novo Conteúdo</h3>
-        <button onclick="closeResourceModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeResourceModal()" class="text-slate-400 hover:text-slate-600 p-1.5 rounded-full hover:bg-slate-200/60"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <form id="resourceForm" onsubmit="handleSaveResource(event)" class="p-6 space-y-4 text-xs">
         <input type="hidden" id="editResourceId" value="">
         <div>
           <label class="block font-bold text-slate-700 mb-1">Título do Material</label>
-          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3 py-2 border rounded-lg outline-none">
+          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
         </div>
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Formato</label>
-            <select id="inputType" class="w-full px-3 py-2 border rounded-lg outline-none"></select>
+            <select id="inputType" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></select>
           </div>
           <div>
             <label class="block font-bold text-slate-700 mb-1">Disciplina</label>
-            <select id="inputSubject" class="w-full px-3 py-2 border rounded-lg outline-none">
+            <select id="inputSubject" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
               <option value="Língua Portuguesa">Língua Portuguesa</option>
               <option value="IA na Educação">IA na Educação</option>
               <option value="Educação Inclusiva">Educação Inclusiva</option>
@@ -326,16 +326,16 @@
         </div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Descrição</label>
-          <textarea id="inputDescription" rows="2" required placeholder="Resumo..." class="w-full px-3 py-2 border rounded-lg outline-none"></textarea>
+          <textarea id="inputDescription" rows="2" required placeholder="Resumo..." class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500"></textarea>
         </div>
-        <div class="border-t pt-3">
+        <div class="border-t border-slate-100 pt-3">
           <label class="block font-bold text-slate-700 mb-1">URL Externa ou Ficheiro Local</label>
-          <input type="url" id="inputUrl" placeholder="https://..." class="w-full px-3 py-2 border rounded-lg outline-none mb-2">
-          <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 text-xs">
+          <input type="url" id="inputUrl" placeholder="https://..." class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500 mb-2">
+          <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
         </div>
         <div class="flex justify-end gap-2 pt-4">
-          <button type="button" onclick="closeResourceModal()" class="px-4 py-2 border rounded-lg font-bold">Cancelar</button>
-          <button type="submit" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-bold">Guardar</button>
+          <button type="button" onclick="closeResourceModal()" class="px-4 py-2.5 border border-slate-200 rounded-xl font-bold text-slate-600 hover:bg-slate-50">Cancelar</button>
+          <button type="submit" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Guardar</button>
         </div>
       </form>
     </div>
@@ -343,16 +343,16 @@
 
   <!-- MODAL: GESTÃO DE ABAS -->
   <div id="tabsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b pb-2">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
         <h3 class="font-bold text-slate-900 text-sm">Gerenciar Abas de Formato</h3>
-        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <div>
         <label class="block font-bold text-slate-700 mb-1">Nova Aba</label>
         <div class="flex gap-2">
-          <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3 py-2 border rounded-lg outline-none">
-          <button onclick="handleAddTab()" class="px-3 py-2 bg-sky-600 text-white rounded-lg font-bold">Adicionar</button>
+          <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
+          <button onclick="handleAddTab()" class="px-4 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Adicionar</button>
         </div>
       </div>
       <div id="tabsListModal" class="space-y-2 max-h-48 overflow-y-auto"></div>
@@ -361,41 +361,41 @@
 
   <!-- MODAL: ALTERAR LOGÓTIPO -->
   <div id="logoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
-      <div class="flex justify-between items-center border-b pb-2">
+    <div class="bg-white w-full max-w-md rounded-3xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-3">
         <h3 class="font-bold text-slate-900 text-sm">Alterar Logo do Portal</h3>
-        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-full hover:bg-slate-100"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
       <form onsubmit="handleSaveLogo(event)" class="space-y-3">
         <div>
           <label class="block font-bold text-slate-700 mb-1">Carregar Imagem do Computador</label>
-          <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs">
+          <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
         </div>
         <div class="text-center font-bold text-slate-400 py-0.5">OU</div>
         <div>
           <label class="block font-bold text-slate-700 mb-1">Link de Imagem na Web (URL)</label>
-          <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border rounded-lg outline-none">
+          <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3.5 py-2.5 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-sky-500">
         </div>
-        <div class="flex justify-between items-center pt-2">
-          <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold">Restaurar Padrão</button>
-          <button type="submit" class="px-4 py-1.5 bg-sky-600 text-white rounded-lg font-bold">Guardar Logo</button>
+        <div class="flex justify-between items-center pt-3">
+          <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold hover:underline">Restaurar Padrão</button>
+          <button type="submit" class="px-5 py-2.5 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 shadow-md shadow-sky-600/20">Guardar Logo</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- BOTÃO FLUTUANTE RETRÁTIL (Canto Inferior Direito) PARA NÃO ATRAPALHAR -->
+  <!-- BOTÃO FLUTUANTE RETRÁTIL (Canto Inferior Direito) -->
   <div class="fixed bottom-6 right-6 z-30 flex flex-col items-end gap-2">
-    <div id="floatingAdminMenu" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-3 shadow-xl flex flex-col gap-2 hidden transition-all">
-      <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-[#0f172a] hover:bg-slate-800 text-white transition shadow-sm">
-        <i data-lucide="plus-circle" class="w-4 h-4 text-[#0284c7]"></i> Adicionar Conteúdo
+    <div id="floatingAdminMenu" class="bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl p-3 shadow-2xl flex flex-col gap-2 hidden transition-all">
+      <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold bg-slate-900 hover:bg-slate-800 text-white transition shadow-sm">
+        <i data-lucide="plus-circle" class="w-4 h-4 text-sky-400"></i> Adicionar Conteúdo
       </button>
-      <button onclick="openLogoModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+      <button onclick="openLogoModal()" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
         <i data-lucide="image" class="w-4 h-4 text-slate-500"></i> Alterar Logo
       </button>
     </div>
-    <button onclick="toggleFloatingMenu()" class="w-12 h-12 rounded-full bg-[#0f172a] text-white flex items-center justify-center shadow-2xl hover:bg-slate-800 transition transform hover:scale-105" title="Painel de Administração">
-      <i data-lucide="settings" class="w-5 h-5 text-[#0284c7]"></i>
+    <button onclick="toggleFloatingMenu()" class="w-14 h-14 rounded-full bg-slate-900 text-white flex items-center justify-center shadow-2xl hover:bg-slate-800 transition transform hover:scale-105" title="Painel de Administração">
+      <i data-lucide="settings" class="w-6 h-6 text-sky-400"></i>
     </button>
   </div>
 
@@ -409,13 +409,10 @@
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     }
 
-    // --- PAINEL FLUTUANTE RETRÁTIL ---
     function toggleFloatingMenu() {
-      const menu = document.getElementById("floatingAdminMenu");
-      menu.classList.toggle("hidden");
+      document.getElementById("floatingAdminMenu").classList.toggle("hidden");
     }
 
-    // --- AUTENTICAÇÃO E PERFIL PRÓPRIO ---
     function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
     function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
 
@@ -469,8 +466,8 @@
       if (!container) return;
       const displayName = user.name || user.email.split('@')[0];
       container.innerHTML = `
-        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl shadow-sm">
-          <div class="w-7 h-7 rounded-full bg-[#0284c7] text-white flex items-center justify-center font-bold text-xs">
+        <div class="flex items-center gap-3 bg-white border border-slate-200 px-3.5 py-2 rounded-2xl shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-sky-600 text-white flex items-center justify-center font-bold text-xs shadow-sm">
             ${displayName.charAt(0).toUpperCase()}
           </div>
           <span class="text-xs font-semibold text-slate-700 hidden sm:inline">${displayName}</span>
@@ -485,7 +482,6 @@
       location.reload();
     }
 
-    // --- NAVEGAÇÃO SUPERIOR (GUIAS) ---
     function navigateHome() {
       currentFilter = 'all';
       renderTabs();
@@ -503,7 +499,6 @@
     function openNotificationsModal() { document.getElementById("notificationsModal").classList.remove("hidden"); }
     function closeNotificationsModal() { document.getElementById("notificationsModal").classList.add("hidden"); }
 
-    // --- INDEXEDDB & RECURSOS ---
     const DB_NAME = "CrIAMediaDB";
     const DB_VERSION = 2;
     const STORE_NAME = "media_blobs";
@@ -578,7 +573,7 @@
         const btn = document.createElement("button");
         const isActive = currentFilter === tab.id;
         btn.className = `tab-btn px-4 py-2 rounded-full text-xs font-semibold transition ${
-          isActive ? 'bg-[#0284c7] text-white font-bold' : 'bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100'
+          isActive ? 'bg-sky-600 text-white font-bold shadow-md shadow-sky-600/20' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
         }`;
         btn.innerText = tab.label;
         btn.onclick = () => filterResources(tab.id);
@@ -586,7 +581,7 @@
       });
 
       const manageBtn = document.createElement("button");
-      manageBtn.className = "px-2 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-[#0284c7] hover:bg-slate-100 transition";
+      manageBtn.className = "px-2.5 py-2 rounded-full text-xs font-bold text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition border border-slate-200 bg-white";
       manageBtn.title = "Gerenciar Abas";
       manageBtn.innerHTML = `<i data-lucide="settings-2" class="w-4 h-4"></i>`;
       manageBtn.onclick = openTabsModal;
@@ -708,28 +703,28 @@
 
       filtered.forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white rounded-2xl p-6 border border-slate-100 flex flex-col justify-between hover:border-slate-200 hover:shadow-md transition shadow-sm";
+        card.className = "bg-white rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-sky-300 hover:shadow-lg transition shadow-sm";
 
         let iconName = "video";
-        let badgeColor = "bg-blue-50 text-[#0284c7]";
+        let badgeColor = "bg-sky-50 text-sky-700 border border-sky-100";
         let itemIcon = "play-circle";
-        if (item.type === "audio") { iconName = "mic"; badgeColor = "bg-purple-50 text-purple-600"; itemIcon = "volume-2"; }
-        if (item.type === "simulado" || item.type === "curadoria") { iconName = "file-text"; badgeColor = "bg-purple-50 text-purple-600"; itemIcon = "book-open"; }
-        if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-emerald-50 text-[#0d9488]"; itemIcon = "help-circle"; }
+        if (item.type === "audio") { iconName = "mic"; badgeColor = "bg-purple-50 text-purple-700 border border-purple-100"; itemIcon = "volume-2"; }
+        if (item.type === "simulado" || item.type === "curadoria") { iconName = "file-text"; badgeColor = "bg-purple-50 text-purple-700 border border-purple-100"; itemIcon = "book-open"; }
+        if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-emerald-50 text-emerald-700 border border-emerald-100"; itemIcon = "help-circle"; }
 
         card.innerHTML = `
           <div class="space-y-4">
             <div class="flex items-center justify-between">
               <span class="text-[11px] font-bold px-3 py-1 rounded-full ${badgeColor}">${item.subject}</span>
-              <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
-                <button onclick="openEditModal('${item.id}')" class="hover:text-[#0284c7] transition">Editar</button>
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-400">
+                <button onclick="openEditModal('${item.id}')" class="hover:text-sky-600 transition">Editar</button>
                 <span>·</span>
                 <button onclick="deleteResource('${item.id}', '${item.sourceType}')" class="hover:text-red-500 transition">Remover</button>
               </div>
             </div>
             <div class="flex gap-4">
               <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
-                <i data-lucide="${iconName}" class="w-6 h-6 text-slate-500"></i>
+                <i data-lucide="${iconName}" class="w-6 h-6 text-slate-600"></i>
               </div>
               <div class="space-y-1">
                 <h3 class="font-bold text-sm text-slate-900 leading-snug">${item.title}</h3>
@@ -742,7 +737,7 @@
               <i data-lucide="${itemIcon}" class="w-4 h-4"></i>
               <span>${item.duration || (item.sourceType === 'indexeddb' ? 'Ficheiro Local' : 'Acessar')}</span>
             </div>
-            <button onclick="openResourceViewer('${item.id}')" class="text-[#0284c7] hover:underline flex items-center gap-1">
+            <button onclick="openResourceViewer('${item.id}')" class="text-sky-600 hover:text-sky-700 hover:underline flex items-center gap-1">
               Acessar <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
           </div>
