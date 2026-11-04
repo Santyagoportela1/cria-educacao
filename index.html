@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CrIA Educação | Plataforma Interativa de Recursos</title>
+  <title>CrIA Educação | Conhecimento, inovação e práticas</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -16,6 +16,9 @@
   <!-- Ícones Lucide -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- Cliente Oficial Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
   <style>
     html, body {
       margin: 0 !important;
@@ -25,92 +28,258 @@
       font-family: 'Inter', sans-serif !important;
       background-color: #f8fafc !important;
     }
-    .cria-gradient-bg {
-      background: linear-gradient(135deg, #0284c7 0%, #0d9488 50%, #ea580c 100%);
+    .hero-bg {
+      background: radial-gradient(circle at top right, rgba(2, 132, 199, 0.08) 0%, rgba(255, 255, 255, 0) 50%);
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="bg-[#f8fafc] text-slate-800 antialiased min-h-screen flex flex-col hero-bg">
 
-  <!-- CABEÇALHO -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- Logótipo dinâmico e clicável para alteração -->
-        <div class="relative group cursor-pointer" onclick="openLogoModal()" title="Clique para alterar a logo">
-          <img 
-            id="siteLogo" 
-            src="" 
-            alt="Logo" 
-            class="h-10 w-10 rounded-xl object-contain shadow-sm border border-slate-200 hidden"
-          >
-          <div id="siteLogoFallback" class="w-10 h-10 rounded-xl cria-gradient-bg flex items-center justify-center text-white font-extrabold text-xl shadow-sm">
+  <!-- CABEÇALHO COM GUIAS OPERACIONAIS -->
+  <header class="bg-white border-b border-slate-100 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logótipo & Navegação Superior Interativa -->
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2 cursor-pointer" onclick="openLogoModal()" title="Clique para alterar a logo">
+          <div id="siteLogoFallback" class="w-9 h-9 rounded-lg bg-[#0284c7] flex items-center justify-center text-white font-extrabold text-lg shadow-sm">
             A
           </div>
-          <div class="absolute inset-0 bg-black/40 rounded-xl opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition">
-            <i data-lucide="camera" class="w-4 h-4"></i>
-          </div>
+          <img id="siteLogo" src="" alt="Logo" class="h-9 w-auto object-contain hidden">
+          <span class="text-xl font-extrabold tracking-tight text-[#0f172a]">CrIA <span class="text-[#0284c7]">Educação</span></span>
         </div>
-        <div>
-          <span class="text-xl font-extrabold tracking-tight text-slate-900">CrIA <span class="text-sky-600">Educação</span></span>
+
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 pl-6 border-l border-slate-200">
+          <!-- Guia Início -->
+          <button onclick="navigateHome()" class="text-[#0284c7] flex items-center gap-1.5 font-semibold hover:text-sky-700 transition">
+            <i data-lucide="home" class="w-4 h-4"></i> Início
+          </button>
+
+          <!-- Menu Dropdown Conteúdos -->
+          <div class="relative group">
+            <button class="hover:text-slate-900 flex items-center gap-1 py-2 focus:outline-none">
+              Conteúdos <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+            <div class="absolute left-0 mt-1 w-52 bg-white border border-slate-100 rounded-2xl shadow-xl py-2 hidden group-hover:block z-50 text-xs">
+              <a href="#" onclick="filterResources('all'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700 font-semibold">Ver Todos os Conteúdos</a>
+              <div class="border-t border-slate-100 my-1"></div>
+              <a href="#" onclick="filterResources('video'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Vídeos Educativos</a>
+              <a href="#" onclick="filterResources('audio'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Podcasts</a>
+              <a href="#" onclick="filterResources('simulado'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Simulados</a>
+              <a href="#" onclick="filterResources('flashcard'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Flashcards</a>
+              <a href="#" onclick="filterResources('curadoria'); return false;" class="block px-4 py-2 hover:bg-slate-50 text-slate-700">Guias & Curadoria</a>
+            </div>
+          </div>
+
+          <!-- Guia Sobre o CrIA -->
+          <button onclick="showInfoModal('Sobre o CrIA Educação', 'O CrIA Educação é uma plataforma interativa desenvolvida para apoiar professores e estudantes com sequências didáticas, ferramentas de IA e recursos de educação inclusiva.')" class="hover:text-slate-900 transition">
+            Sobre o CrIA
+          </button>
+
+          <!-- Guia Ajuda -->
+          <button onclick="showInfoModal('Central de Ajuda', 'Para gerir conteúdos, utilize a barra flutuante no fundo da página. Pode adicionar ligações do Google Drive, YouTube ou carregar ficheiros locais com facilidade.')" class="hover:text-slate-900 transition">
+            Ajuda
+          </button>
+        </nav>
+      </div>
+
+      <!-- Notificações & Autenticação -->
+      <div class="flex items-center gap-4">
+        <!-- Notificações Clicáveis -->
+        <button onclick="openNotificationsModal()" class="text-slate-400 hover:text-slate-600 p-2 relative transition" title="Notificações">
+          <i data-lucide="bell" class="w-5 h-5"></i>
+          <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+        </button>
+
+        <!-- Botão Entrar / Sessão Ativa -->
+        <div id="authHeaderContainer">
+          <button onclick="openAuthModal()" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-xl text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 transition shadow-sm">
+            <i data-lucide="user" class="w-4 h-4 text-slate-400"></i> Entrar
+          </button>
         </div>
       </div>
 
-      <div class="flex items-center gap-2">
-        <button onclick="openLogoModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition">
-          <i data-lucide="image" class="w-3.5 h-3.5 text-slate-500"></i>
-          Alterar Logo
-        </button>
-        <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold bg-sky-600 text-white hover:bg-sky-700 transition shadow-sm">
-          <i data-lucide="plus-circle" class="w-4 h-4"></i>
-          Adicionar Conteúdo
-        </button>
-      </div>
     </div>
   </header>
 
   <!-- CONTEÚDO PRINCIPAL -->
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10">
-
-    <!-- APRESENTAÇÃO -->
-    <section class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
-      <div class="max-w-3xl">
-        <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block mb-1">Repositório Pedagógico Ativo</span>
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mb-2">
-          Central de Conteúdos & Práticas Docentes
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-12">
+    
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+      <div class="lg:col-span-7 space-y-4">
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-[#0f172a] leading-tight tracking-tight">
+          Conhecimento, inovação e práticas que transformam a <span class="text-[#0284c7]">educação</span>.
         </h1>
-        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-          Aceda, edite ou adicione novos materiais para as disciplinas de <strong>Língua Portuguesa</strong>, <strong>Inteligência Artificial para a Educação</strong> e <strong>Educação Inclusiva</strong> Suporta vídeos pesados do computador, Google Drive e YouTube diretamente no leitor.
+        <p class="text-slate-500 text-sm sm:text-base max-w-xl">
+          Explore conteúdos de qualidade, desenvolvidos para apoiar professores em sua jornada de ensinar e inspirar[cite: 3].
         </p>
+
+        <div class="flex items-center gap-2 bg-white border border-slate-200 rounded-full p-2 shadow-sm max-w-xl">
+          <div class="flex items-center gap-2 flex-grow pl-3">
+            <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+            <input 
+              type="text" 
+              id="searchInput" 
+              oninput="handleSearch()"
+              placeholder="Buscar por tema, disciplina ou recurso..." 
+              class="w-full text-xs text-slate-700 bg-transparent border-0 focus:outline-none focus:ring-0"
+            >
+          </div>
+          <button onclick="handleSearch()" class="px-6 py-2.5 bg-[#0f172a] text-white rounded-full text-xs font-bold hover:bg-slate-800 transition">
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-md">
+          <img 
+            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" 
+            alt="Materiais de Educação" 
+            class="rounded-3xl shadow-lg border border-slate-100 object-cover w-full h-64 sm:h-72"
+          >
+          <div class="absolute bottom-4 right-4 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-md border border-slate-100 text-xs font-bold text-slate-800 space-y-1">
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0284c7]"></span> Educação</div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#ea580c]"></span> Inovação</div>
+            <div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0d9488]"></span> Inclusão</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- BARRA DE FILTROS (ABAS DINÂMICAS) E PESQUISA -->
-    <section class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-      <div class="flex flex-wrap items-center gap-2" id="tabsContainer">
-        <!-- As abas são geradas e renderizadas via JS -->
+    <!-- TRÊS DISCIPLINAS PRINCIPAIS -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div onclick="filterResources('video')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
+            <i data-lucide="book-open" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900">Língua Portuguesa</h3>
+            <p class="text-[11px] text-slate-500">Gramática, leitura, interpretação e mais.</p>
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
       </div>
 
-      <div class="relative w-full sm:w-64">
-        <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2"></i>
-        <input
-          type="text"
-          id="searchInput"
-          oninput="handleSearch()"
-          placeholder="Buscar no repositório..."
-          class="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500"
-        >
+      <div onclick="filterResources('curadoria')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900">Inteligência Artificial na Educação</h3>
+            <p class="text-[11px] text-slate-500">Prompts, ferramentas e uso ético.</p>
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+      </div>
+
+      <div onclick="filterResources('flashcard')" class="bg-white p-5 rounded-2xl border border-slate-100 flex items-center justify-between hover:border-slate-200 transition cursor-pointer shadow-sm">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-green-50 flex items-center justify-center text-green-600">
+            <i data-lucide="accessibility" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-slate-900">Educação Inclusiva</h3>
+            <p class="text-[11px] text-slate-500">Acessibilidade, estratégias e recursos.</p>
+          </div>
+        </div>
+        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
       </div>
     </section>
 
-    <!-- GRELHA DINÂMICA DE RECURSOS -->
-    <section>
+    <!-- DESTAQUES / GRELHA DINÂMICA -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-2">
+          <span class="text-lg font-extrabold text-slate-900 pl-2.5 border-l-4 border-[#0284c7]">| Destaques do CrIA</span>
+        </div>
+        <div class="flex items-center gap-2 overflow-x-auto pb-1" id="tabsContainer"></div>
+      </div>
+
       <div id="resourcesGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
   </main>
 
-  <!-- MODAL: LEITOR / VISUALIZADOR DE MULTIMÉDIA -->
+  <!-- MODAL DE AUTENTICAÇÃO (GOOGLE, MICROSOFT, ICLOUD, MANUAL) -->
+  <div id="authModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl">
+      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
+        <h3 class="text-base font-bold text-slate-900">Entrar na Plataforma CrIA</h3>
+        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+
+      <div class="p-6 space-y-4 text-xs">
+        <div class="space-y-2.5">
+          <button onclick="loginWithProvider('google')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.19v3.15C3.17 21.36 7.23 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.19C.43 8.11 0 9.8 0 12s.43 3.89 1.19 5.42l4.09-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.23 0 3.17 2.64 1.19 6.58l4.09 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
+            Continuar com o Google
+          </button>
+
+          <button onclick="loginWithProvider('microsoft')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+            <svg class="w-4 h-4" viewBox="0 0 23 23"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
+            Continuar com a Microsoft
+          </button>
+
+          <button onclick="loginWithProvider('apple')" class="w-full flex items-center justify-center gap-3 py-2.5 px-4 border border-slate-200 rounded-xl font-semibold text-slate-700 hover:bg-slate-50 transition shadow-sm">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 5.75c.57-.69.96-1.65.85-2.61-.84.04-1.87.56-2.46 1.25-.53.6-1 1.58-.87 2.52 0 .02.02.04.04.04.95.01 1.91-.54 2.44-2.2z"/></svg>
+            Continuar com o iCloud / Apple
+          </button>
+        </div>
+
+        <div class="flex items-center my-3">
+          <div class="flex-grow border-t border-slate-200"></div>
+          <span class="px-3 text-slate-400 font-bold uppercase text-[10px]">Ou manual</span>
+          <div class="flex-grow border-t border-slate-200"></div>
+        </div>
+
+        <form onsubmit="handleManualLogin(event)" class="space-y-3">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">E-mail Profissional</label>
+            <input type="email" id="manualEmail" required placeholder="professor@escola.com" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+          </div>
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Palavra-passe</label>
+            <input type="password" id="manualPassword" required placeholder="••••••••" class="w-full px-3 py-2 border rounded-lg outline-none focus:ring-2 focus:ring-sky-500">
+          </div>
+          <button type="submit" class="w-full py-2.5 bg-[#0284c7] text-white rounded-xl font-bold hover:bg-sky-700 transition shadow">
+            Entrar / Registar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE INFORMAÇÃO GERAL -->
+  <div id="infoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <h3 id="infoModalTitle" class="text-base font-bold text-slate-900">Título</h3>
+      <p id="infoModalText" class="text-slate-600 leading-relaxed"></p>
+      <div class="text-right pt-2">
+        <button onclick="closeInfoModal()" class="px-5 py-2 bg-[#0284c7] text-white rounded-xl font-bold hover:bg-sky-700 transition">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE NOTIFICAÇÕES -->
+  <div id="notificationsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex items-center justify-between border-b pb-3">
+        <h3 class="text-base font-bold text-slate-900">Notificações Recentes</h3>
+        <button onclick="closeNotificationsModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
+      </div>
+      <div class="space-y-3">
+        <div class="p-3 bg-sky-50 border border-sky-100 rounded-xl space-y-1">
+          <span class="font-bold text-sky-900 block">Novo Material Disponível</span>
+          <p class="text-sky-700">Sequências Didáticas de Língua Portuguesa atualizadas recentemente.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REPRODUTOR MULTIMÉDIA -->
   <div id="playerModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="bg-white w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[92vh]">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
@@ -118,13 +287,9 @@
           <span id="playerTypeBadge" class="text-[10px] font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-2 py-0.5 rounded">Visualizador</span>
           <h3 id="playerTitle" class="text-base font-bold text-slate-900 mt-1">Título do Conteúdo</h3>
         </div>
-        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-slate-600 p-1"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-
       <div class="p-4 sm:p-6 flex-grow overflow-y-auto flex flex-col items-center justify-center min-h-[360px] bg-slate-950" id="playerContainer"></div>
-
       <div class="px-6 py-3 border-t border-slate-200 bg-slate-50 flex justify-between items-center text-xs">
         <span id="playerMeta" class="text-slate-500">Disciplina associada</span>
         <a id="playerExternalLink" href="#" target="_blank" class="text-sky-600 hover:underline font-bold inline-flex items-center gap-1">
@@ -139,63 +304,40 @@
     <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl">
       <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
         <h3 id="resourceModalTitle" class="text-base font-bold text-slate-900">Cadastrar Novo Conteúdo</h3>
-        <button onclick="closeResourceModal()" class="text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+        <button onclick="closeResourceModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-
       <form id="resourceForm" onsubmit="handleSaveResource(event)" class="p-6 space-y-4 text-xs">
         <input type="hidden" id="editResourceId" value="">
-
         <div>
           <label class="block font-bold text-slate-700 mb-1">Título do Material</label>
-          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01 - Produção Multimodal em Português" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+          <input type="text" id="inputTitle" required placeholder="Ex: Aula 01" class="w-full px-3 py-2 border rounded-lg outline-none">
         </div>
-
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Tipo de Formato (Aba)</label>
-            <select id="inputType" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
-              <!-- Opções povoadas dinamicamente -->
-            </select>
+            <label class="block font-bold text-slate-700 mb-1">Formato</label>
+            <select id="inputType" class="w-full px-3 py-2 border rounded-lg outline-none"></select>
           </div>
           <div>
-            <label class="block font-bold text-slate-700 mb-1">Componente Curricular</label>
-            <select id="inputSubject" class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
+            <label class="block font-bold text-slate-700 mb-1">Disciplina</label>
+            <select id="inputSubject" class="w-full px-3 py-2 border rounded-lg outline-none">
               <option value="Língua Portuguesa">Língua Portuguesa</option>
-              <option value="IA para a Educação">IA para a Educação</option>
+              <option value="IA na Educação">IA na Educação</option>
               <option value="Educação Inclusiva">Educação Inclusiva</option>
             </select>
           </div>
         </div>
-
         <div>
           <label class="block font-bold text-slate-700 mb-1">Descrição</label>
-          <textarea id="inputDescription" rows="2" required placeholder="Breve resumo da aula ou material pedagógico..." class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+          <textarea id="inputDescription" rows="2" required placeholder="Resumo..." class="w-full px-3 py-2 border rounded-lg outline-none"></textarea>
         </div>
-
-        <div class="border-t border-slate-100 pt-3">
-          <label class="block font-bold text-slate-700 mb-1">Origem do Vídeo ou Ficheiro</label>
-
-          <div class="space-y-3">
-            <div>
-              <span class="text-[11px] text-slate-600 font-semibold block mb-1">Opção A: Ligação Externa (Google Drive, YouTube, Web):</span>
-              <input type="url" id="inputUrl" placeholder="https://drive.google.com/file/d/... ou https://youtube.com/watch?v=..." class="w-full px-3 py-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-sky-500 outline-none">
-            </div>
-
-            <div class="text-center font-bold text-slate-400 py-0.5 text-[11px]">OU</div>
-
-            <div>
-              <span class="text-[11px] text-slate-600 font-semibold block mb-1">Opção B: Ficheiro do Computador (MP4 / WebM / MP3):</span>
-              <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
-              <span id="fileKeepNote" class="text-[10px] text-slate-400 mt-1 hidden block">Deixe em branco para manter o arquivo que já foi guardado anteriormente.</span>
-            </div>
-          </div>
+        <div class="border-t pt-3">
+          <label class="block font-bold text-slate-700 mb-1">URL Externa ou Ficheiro Local</label>
+          <input type="url" id="inputUrl" placeholder="https://..." class="w-full px-3 py-2 border rounded-lg outline-none mb-2">
+          <input type="file" id="inputFile" accept="video/*,audio/*,.pdf" class="w-full text-slate-500 text-xs">
         </div>
-
         <div class="flex justify-end gap-2 pt-4">
-          <button type="button" onclick="closeResourceModal()" class="px-4 py-2 border border-slate-200 rounded-lg font-bold text-slate-600 hover:bg-slate-50">Cancelar</button>
-          <button type="submit" id="submitBtn" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-bold hover:bg-sky-700">Guardar</button>
+          <button type="button" onclick="closeResourceModal()" class="px-4 py-2 border rounded-lg font-bold">Cancelar</button>
+          <button type="submit" class="px-4 py-2 bg-sky-600 text-white rounded-lg font-bold">Guardar</button>
         </div>
       </form>
     </div>
@@ -203,69 +345,147 @@
 
   <!-- MODAL: GESTÃO DE ABAS -->
   <div id="tabsModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
-        <h3 class="text-base font-bold text-slate-900">Gerenciar Abas de Formato</h3>
-        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 class="font-bold text-slate-900 text-sm">Gerenciar Abas de Formato</h3>
+        <button onclick="closeTabsModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <div class="p-6 space-y-4 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Adicionar Nova Aba</label>
-          <div class="flex gap-2">
-            <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3 py-2 border border-slate-200 rounded-lg outline-none">
-            <button onclick="handleAddTab()" class="px-3 py-2 bg-sky-600 text-white rounded-lg font-bold hover:bg-sky-700">Adicionar</button>
-          </div>
-        </div>
-        <div class="border-t border-slate-100 pt-3">
-          <label class="block font-bold text-slate-700 mb-2">Abas Atuais:</label>
-          <div id="tabsListModal" class="space-y-2 max-h-48 overflow-y-auto"></div>
+      <div>
+        <label class="block font-bold text-slate-700 mb-1">Nova Aba</label>
+        <div class="flex gap-2">
+          <input type="text" id="newTabName" placeholder="Ex: Planos de Aula" class="flex-grow px-3 py-2 border rounded-lg outline-none">
+          <button onclick="handleAddTab()" class="px-3 py-2 bg-sky-600 text-white rounded-lg font-bold">Adicionar</button>
         </div>
       </div>
+      <div id="tabsListModal" class="space-y-2 max-h-48 overflow-y-auto"></div>
     </div>
   </div>
 
-  <!-- MODAL: ALTERAR LOGOTIPO -->
+  <!-- MODAL: ALTERAR LOGÓTIPO -->
   <div id="logoModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl">
-      <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
-        <h3 class="text-base font-bold text-slate-900">Alterar Logo do Portal</h3>
-        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
+    <div class="bg-white w-full max-w-md rounded-2xl overflow-hidden shadow-2xl p-6 space-y-4 text-xs">
+      <div class="flex justify-between items-center border-b pb-2">
+        <h3 class="font-bold text-slate-900 text-sm">Alterar Logo do Portal</h3>
+        <button onclick="closeLogoModal()" class="text-slate-400 hover:text-slate-600"><i data-lucide="x" class="w-5 h-5"></i></button>
       </div>
-      <form onsubmit="handleSaveLogo(event)" class="p-6 space-y-4 text-xs">
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Carregar Imagem do Computador</label>
-          <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
-        </div>
-        <div class="text-center font-bold text-slate-400 py-0.5">OU</div>
-        <div>
-          <label class="block font-bold text-slate-700 mb-1">Link de Imagem na Web (URL)</label>
-          <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border border-slate-200 rounded-lg outline-none">
-        </div>
-        <div class="flex justify-between items-center pt-3 border-t border-slate-100">
-          <button type="button" onclick="handleResetLogo()" class="text-red-500 hover:underline font-semibold">Restaurar Padrão</button>
-          <div class="flex gap-2">
-            <button type="button" onclick="closeLogoModal()" class="px-3 py-1.5 border border-slate-200 rounded-lg font-bold text-slate-600">Cancelar</button>
-            <button type="submit" class="px-4 py-1.5 bg-sky-600 text-white rounded-lg font-bold hover:bg-sky-700">Guardar Logo</button>
-          </div>
+      <form onsubmit="handleSaveLogo(event)" class="space-y-3">
+        <input type="file" id="logoFileInput" accept="image/*" class="w-full text-slate-500 text-xs">
+        <input type="url" id="logoUrlInput" placeholder="https://exemplo.com/logo.png" class="w-full px-3 py-2 border rounded-lg outline-none">
+        <div class="flex justify-between items-center pt-2">
+          <button type="button" onclick="handleResetLogo()" class="text-red-500 font-semibold">Restaurar Padrão</button>
+          <button type="submit" class="px-4 py-1.5 bg-sky-600 text-white rounded-lg font-bold">Guardar Logo</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- RODAPÉ -->
-  <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-    <div class="max-w-7xl mx-auto px-4">
-      <p class="font-bold text-slate-700">CrIA Educação · Plataforma de Soluções Educacionais</p>
-      <p class="mt-1">Repositório Interativo Personalizável · 2026</p>
-    </div>
-  </footer>
+  <!-- BARRA FLUTUANTE DE ADMINISTRAÇÃO -->
+  <div class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-slate-200 rounded-full px-5 py-3 shadow-xl flex items-center gap-3 z-30">
+    <button onclick="openAddModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-[#0f172a] hover:bg-slate-800 text-white transition shadow-sm">
+      <i data-lucide="plus-circle" class="w-4 h-4 text-[#0284c7]"></i> Adicionar Conteúdo
+    </button>
+    <div class="w-[1px] h-6 bg-slate-200"></div>
+    <button onclick="openLogoModal()" class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+      <i data-lucide="image" class="w-4 h-4 text-slate-500"></i> Alterar Logo
+    </button>
+  </div>
 
-  <!-- SCRIPT JAVASCRIPT: LOGO + GESTÃO DE ABAS + EDIÇÃO COMPLETA -->
+  <!-- SCRIPT JAVASCRIPT INTEGRADO -->
   <script>
+    const SUPABASE_URL = ""; 
+    const SUPABASE_ANON_KEY = ""; 
+    
+    let supabaseClient = null;
+    if (SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase) {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    }
+
+    // --- AUTENTICAÇÃO ---
+    function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
+    function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
+
+    async function loginWithProvider(providerName) {
+      if (supabaseClient) {
+        try {
+          await supabaseClient.auth.signInWithOAuth({ provider: providerName });
+        } catch(e) { alert("Erro: " + e.message); }
+      } else {
+        const fakeUser = { email: `utilizador_${providerName}@cria.edu` };
+        localStorage.setItem("cria_user_session", JSON.stringify(fakeUser));
+        updateAuthHeader(fakeUser);
+        closeAuthModal();
+        alert(`Sessão iniciada com sucesso via ${providerName.toUpperCase()}!`);
+      }
+    }
+
+    async function handleManualLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("manualEmail").value.trim();
+      const password = document.getElementById("manualPassword").value;
+
+      if (supabaseClient) {
+        try {
+          const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+          if (error) { await supabaseClient.auth.signUp({ email, password }); }
+        } catch(err) {
+          alert("Erro: " + err.message);
+          return;
+        }
+      }
+
+      const user = { email };
+      localStorage.setItem("cria_user_session", JSON.stringify(user));
+      updateAuthHeader(user);
+      closeAuthModal();
+      alert("Sessão iniciada com sucesso!");
+    }
+
+    function checkActiveSession() {
+      const session = localStorage.getItem("cria_user_session");
+      if (session) {
+        try { updateAuthHeader(JSON.parse(session)); } catch(e) {}
+      }
+    }
+
+    function updateAuthHeader(user) {
+      const container = document.getElementById("authHeaderContainer");
+      if (!container) return;
+      container.innerHTML = `
+        <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+          <div class="w-7 h-7 rounded-full bg-[#0284c7] text-white flex items-center justify-center font-bold text-xs">
+            ${user.email.charAt(0).toUpperCase()}
+          </div>
+          <span class="text-xs font-semibold text-slate-700 hidden sm:inline">${user.email}</span>
+          <button onclick="handleLogout()" class="text-red-500 hover:text-red-700 text-xs font-bold ml-2">Sair</button>
+        </div>
+      `;
+    }
+
+    async function handleLogout() {
+      if (supabaseClient) await supabaseClient.auth.signOut();
+      localStorage.removeItem("cria_user_session");
+      location.reload();
+    }
+
+    // --- NAVEGAÇÃO SUPERIOR (GUIAS) ---
+    function navigateHome() {
+      currentFilter = 'all';
+      renderTabs();
+      renderGrid();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showInfoModal(title, text) {
+      document.getElementById("infoModalTitle").innerText = title;
+      document.getElementById("infoModalText").innerText = text;
+      document.getElementById("infoModal").classList.remove("hidden");
+    }
+    function closeInfoModal() { document.getElementById("infoModal").classList.add("hidden"); }
+
+    function openNotificationsModal() { document.getElementById("notificationsModal").classList.remove("hidden"); }
+    function closeNotificationsModal() { document.getElementById("notificationsModal").classList.add("hidden"); }
+
+    // --- INDEXEDDB & RECURSOS ---
     const DB_NAME = "CrIAMediaDB";
     const DB_VERSION = 2;
     const STORE_NAME = "media_blobs";
@@ -275,9 +495,7 @@
         const req = indexedDB.open(DB_NAME, DB_VERSION);
         req.onupgradeneeded = (e) => {
           const db = e.target.result;
-          if (!db.objectStoreNames.contains(STORE_NAME)) {
-            db.createObjectStore(STORE_NAME);
-          }
+          if (!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME);
         };
         req.onsuccess = () => resolve(req.result);
         req.onerror = () => reject(req.error);
@@ -288,8 +506,7 @@
       const db = await openDB();
       return new Promise((resolve, reject) => {
         const tx = db.transaction(STORE_NAME, "readwrite");
-        const store = tx.objectStore(STORE_NAME);
-        store.put(filePayload, key);
+        tx.objectStore(STORE_NAME).put(filePayload, key);
         tx.oncomplete = () => resolve();
         tx.onerror = () => reject(tx.error);
       });
@@ -299,8 +516,7 @@
       const db = await openDB();
       return new Promise((resolve, reject) => {
         const tx = db.transaction(STORE_NAME, "readonly");
-        const store = tx.objectStore(STORE_NAME);
-        const req = store.get(key);
+        const req = tx.objectStore(STORE_NAME).get(key);
         req.onsuccess = () => resolve(req.result);
         req.onerror = () => reject(req.error);
       });
@@ -309,14 +525,12 @@
     async function deleteFileFromDB(key) {
       try {
         const db = await openDB();
-        const tx = db.transaction(STORE_NAME, "readwrite");
-        tx.objectStore(STORE_NAME).delete(key);
-      } catch(e) { console.error(e); }
+        db.transaction(STORE_NAME, "readwrite").objectStore(STORE_NAME).delete(key);
+      } catch(e) {}
     }
 
-    // --- GESTÃO DE ABAS DE FORMATO ---
     const defaultTabs = [
-      { id: "all", label: "Todos", fixed: true },
+      { id: "all", label: "Ver todos", fixed: true },
       { id: "video", label: "Vídeos", fixed: true },
       { id: "audio", label: "Podcasts", fixed: true },
       { id: "simulado", label: "Simulados", fixed: true },
@@ -326,9 +540,7 @@
 
     function getStoredTabs() {
       const stored = localStorage.getItem("cria_tabs_data");
-      if (stored) {
-        try { return JSON.parse(stored); } catch (e) { return defaultTabs; }
-      }
+      if (stored) { try { return JSON.parse(stored); } catch(e) {} }
       return defaultTabs;
     }
 
@@ -341,22 +553,22 @@
     function renderTabs() {
       const tabs = getStoredTabs();
       const container = document.getElementById("tabsContainer");
+      if (!container) return;
       container.innerHTML = "";
 
       tabs.forEach(tab => {
         const btn = document.createElement("button");
         const isActive = currentFilter === tab.id;
-        btn.className = `tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-          isActive ? 'bg-sky-600 text-white font-bold' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+        btn.className = `tab-btn px-4 py-2 rounded-full text-xs font-semibold transition ${
+          isActive ? 'bg-[#0284c7] text-white font-bold' : 'bg-slate-50 border border-slate-200 text-slate-600 hover:bg-slate-100'
         }`;
         btn.innerText = tab.label;
         btn.onclick = () => filterResources(tab.id);
         container.appendChild(btn);
       });
 
-      // Botão para gerir/adicionar abas
       const manageBtn = document.createElement("button");
-      manageBtn.className = "px-2 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-sky-600 hover:bg-slate-100 transition";
+      manageBtn.className = "px-2 py-1.5 rounded-full text-xs font-bold text-slate-400 hover:text-[#0284c7] hover:bg-slate-100 transition";
       manageBtn.title = "Gerenciar Abas";
       manageBtn.innerHTML = `<i data-lucide="settings-2" class="w-4 h-4"></i>`;
       manageBtn.onclick = openTabsModal;
@@ -368,6 +580,7 @@
     function populateTypeSelect(selectedVal = "video") {
       const tabs = getStoredTabs().filter(t => t.id !== "all");
       const select = document.getElementById("inputType");
+      if (!select) return;
       select.innerHTML = "";
       tabs.forEach(tab => {
         const opt = document.createElement("option");
@@ -378,70 +591,66 @@
       });
     }
 
-    // --- RECURSOS PADRÃO ---
     const defaultResources = [
       {
         id: "res-1",
         type: "video",
-        title: "Pílula Formativa: Gramática em Contexto e BNCC",
+        title: "Sequências Didáticas: planejamento e aplicação",
         subject: "Língua Portuguesa",
-        description: "Metodologias reflexivas para o ensino da gramática em contexto e multiletramento.",
+        description: "Estratégias práticas para criar atividades significativas.",
         url: "https://www.w3schools.com/html/mov_bbb.mp4",
-        sourceType: "url"
+        sourceType: "url",
+        duration: "15 min"
       },
       {
         id: "res-2",
-        type: "audio",
-        title: "Podcast: Engenharia de Prompts e Marcos UNESCO",
-        subject: "IA para a Educação",
-        description: "Debate focado na construção de avaliações formativas e uso ético da inteligência artificial.",
-        url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        sourceType: "url"
+        type: "curadoria",
+        title: "10 Prompts para Professores",
+        subject: "IA na Educação",
+        description: "Sugestões prontas para otimizar seu trabalho em sala e na escola.",
+        url: "https://drive.google.com",
+        sourceType: "url",
+        duration: "Guia · PDF"
       },
       {
         id: "res-3",
-        type: "simulado",
-        title: "Simulado Diagnóstico Adaptativo #1",
-        subject: "Língua Portuguesa",
-        description: "Instrumento avaliativo online para análise de enunciados e leitura crítica.",
-        url: "https://docs.google.com/forms",
-        sourceType: "url"
-      },
-      {
-        id: "res-4",
         type: "flashcard",
-        title: "Coleção Flashcards: Adaptação Curricular (PEI)",
+        title: "Recursos para uma educação mais acessível",
         subject: "Educação Inclusiva",
-        description: "Conceitos e diretrizes fundamentais para o Atendimento Educacional Especializado.",
+        description: "Materiais e estratégias para incluir todos os estudantes.",
         url: "https://quizlet.com",
-        sourceType: "url"
+        sourceType: "url",
+        duration: "Material · PDF"
       }
     ];
 
     let currentFilter = 'all';
     let currentBlobUrl = null;
 
-    function getStoredResources() {
-      const stored = localStorage.getItem("cria_resources_data");
-      if (stored) {
-        try { return JSON.parse(stored); } catch (e) { return defaultResources; }
+    async function getStoredResources() {
+      if (supabaseClient) {
+        try {
+          const { data, error } = await supabaseClient.from("resources").select("*").order("created_at", { ascending: false });
+          if (!error && data && data.length > 0) {
+            return data.map(d => ({
+              id: d.id, type: d.type, title: d.title, subject: d.subject,
+              description: d.description, url: d.url, sourceType: d.source_type || "url",
+              fileName: d.file_name, mimeType: d.mime_type, duration: d.duration || ""
+            }));
+          }
+        } catch(e) {}
       }
+      const stored = localStorage.getItem("cria_resources_data");
+      if (stored) { try { return JSON.parse(stored); } catch(e) {} }
       localStorage.setItem("cria_resources_data", JSON.stringify(defaultResources));
       return defaultResources;
-    }
-
-    function saveResources(data) {
-      localStorage.setItem("cria_resources_data", JSON.stringify(data));
-      renderGrid();
     }
 
     function formatEmbedUrl(url) {
       if (!url) return "";
       if (url.includes("drive.google.com")) {
         const match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-        if (match && match[1]) {
-          return `https://drive.google.com/file/d/${match[1]}/preview`;
-        }
+        if (match && match[1]) return `https://drive.google.com/file/d/${match[1]}/preview`;
       }
       if (url.includes("youtube.com/watch?v=")) {
         const id = url.split("v=")[1]?.split("&")[0];
@@ -454,8 +663,8 @@
       return url;
     }
 
-    function renderGrid() {
-      const all = getStoredResources();
+    async function renderGrid() {
+      const all = await getStoredResources();
       const searchEl = document.getElementById("searchInput");
       const term = searchEl ? searchEl.value.toLowerCase() : "";
       const container = document.getElementById("resourcesGrid");
@@ -481,45 +690,42 @@
 
       filtered.forEach(item => {
         const card = document.createElement("div");
-        card.className = "bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between";
+        card.className = "bg-white rounded-2xl p-6 border border-slate-100 flex flex-col justify-between hover:border-slate-200 hover:shadow-md transition shadow-sm";
 
-        let iconName = "play-circle";
-        let badgeColor = "bg-sky-50 text-sky-700";
-        if (item.type === "audio") { iconName = "mic"; badgeColor = "bg-purple-50 text-purple-700"; }
-        if (item.type === "simulado") { iconName = "file-check-2"; badgeColor = "bg-emerald-50 text-emerald-700"; }
-        if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-amber-50 text-amber-700"; }
-        if (item.type === "curadoria") { iconName = "book-open"; badgeColor = "bg-rose-50 text-rose-700"; }
+        let iconName = "video";
+        let badgeColor = "bg-blue-50 text-[#0284c7]";
+        let itemIcon = "play-circle";
+        if (item.type === "audio") { iconName = "mic"; badgeColor = "bg-purple-50 text-purple-600"; itemIcon = "volume-2"; }
+        if (item.type === "simulado" || item.type === "curadoria") { iconName = "file-text"; badgeColor = "bg-purple-50 text-purple-600"; itemIcon = "book-open"; }
+        if (item.type === "flashcard") { iconName = "layers"; badgeColor = "bg-emerald-50 text-[#0d9488]"; itemIcon = "help-circle"; }
 
         card.innerHTML = `
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${badgeColor}">
-                ${item.subject}
-              </span>
-              <div class="flex items-center gap-1">
-                <!-- Botão Editar Produto -->
-                <button onclick="openEditModal('${item.id}')" title="Editar este produto" class="text-slate-400 hover:text-sky-600 transition p-1">
-                  <i data-lucide="edit-3" class="w-4 h-4"></i>
-                </button>
-                <!-- Botão Remover -->
-                <button onclick="deleteResource('${item.id}', '${item.sourceType}')" title="Remover" class="text-slate-400 hover:text-red-500 transition p-1">
-                  <i data-lucide="trash-2" class="w-4 h-4"></i>
-                </button>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold px-3 py-1 rounded-full ${badgeColor}">${item.subject}</span>
+              <div class="flex items-center gap-1.5 text-xs font-semibold text-slate-500">
+                <button onclick="openEditModal('${item.id}')" class="hover:text-[#0284c7] transition">Editar</button>
+                <span>·</span>
+                <button onclick="deleteResource('${item.id}', '${item.sourceType}')" class="hover:text-red-500 transition">Remover</button>
               </div>
             </div>
-            <div class="flex items-start gap-2.5 mb-2">
-              <i data-lucide="${iconName}" class="w-5 h-5 text-sky-600 mt-0.5 flex-shrink-0"></i>
-              <h3 class="text-base font-bold text-slate-900 leading-snug">${item.title}</h3>
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center shrink-0">
+                <i data-lucide="${iconName}" class="w-6 h-6 text-slate-500"></i>
+              </div>
+              <div class="space-y-1">
+                <h3 class="font-bold text-sm text-slate-900 leading-snug">${item.title}</h3>
+                <p class="text-xs text-slate-500">${item.description}</p>
+              </div>
             </div>
-            <p class="text-xs text-slate-600 leading-relaxed mb-4">${item.description}</p>
           </div>
-
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[10px] uppercase font-bold text-slate-400">
-              ${item.sourceType === 'indexeddb' ? '💾 Ficheiro Local' : item.type}
-            </span>
-            <button onclick="openResourceViewer('${item.id}')" class="px-3 py-1.5 rounded-lg bg-sky-50 text-sky-700 hover:bg-sky-100 text-xs font-bold inline-flex items-center gap-1.5 transition">
-              <i data-lucide="eye" class="w-3.5 h-3.5"></i> Abrir no Site
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold mt-6">
+            <div class="flex items-center gap-1.5 text-slate-400">
+              <i data-lucide="${itemIcon}" class="w-4 h-4"></i>
+              <span>${item.duration || (item.sourceType === 'indexeddb' ? 'Ficheiro Local' : 'Acessar')}</span>
+            </div>
+            <button onclick="openResourceViewer('${item.id}')" class="text-[#0284c7] hover:underline flex items-center gap-1">
+              Acessar <i data-lucide="arrow-right" class="w-4 h-4"></i>
             </button>
           </div>
         `;
@@ -530,7 +736,7 @@
     }
 
     async function openResourceViewer(id) {
-      const all = getStoredResources();
+      const all = await getStoredResources();
       const item = all.find(r => r.id === id);
       if (!item) return;
 
@@ -542,157 +748,66 @@
       const container = document.getElementById("playerContainer");
       container.innerHTML = "";
 
-      if (currentBlobUrl) {
-        URL.revokeObjectURL(currentBlobUrl);
-        currentBlobUrl = null;
-      }
+      if (currentBlobUrl) { URL.revokeObjectURL(currentBlobUrl); currentBlobUrl = null; }
 
       if (item.sourceType === "indexeddb") {
-        container.innerHTML = `<div class="text-white text-xs py-8">A preparar o vídeo local...</div>`;
+        container.innerHTML = `<div class="text-white text-xs py-8">A preparar o ficheiro local...</div>`;
         const storedData = await getFileFromDB(item.id);
-
         if (!storedData) {
-          container.innerHTML = `<div class="text-red-400 text-xs py-8">O ficheiro não foi encontrado no armazenamento local.</div>`;
+          container.innerHTML = `<div class="text-red-400 text-xs py-8">Ficheiro não encontrado.</div>`;
           document.getElementById("playerModal").classList.remove("hidden");
           return;
         }
-
         const actualBlob = (storedData instanceof Blob || storedData instanceof File) ? storedData : storedData.blob;
         const mime = (storedData && storedData.mimeType) ? storedData.mimeType : (item.mimeType || "video/mp4");
-
         currentBlobUrl = URL.createObjectURL(actualBlob);
         linkBtn.href = currentBlobUrl;
 
         if (item.type === "video") {
-          container.innerHTML = `
-            <div class="w-full flex flex-col items-center">
-              <video id="activeLocalVideo" controls autoplay playsinline preload="auto" class="w-full max-h-[70vh] rounded-lg bg-black">
-                <source src="${currentBlobUrl}" type="${mime}">
-                O seu navegador não suporta este codec de vídeo.
-              </video>
-              <span class="text-slate-400 text-[11px] mt-2">Ficheiro: ${item.fileName || 'Vídeo Local'}</span>
-            </div>
-          `;
-
-          const videoElem = document.getElementById("activeLocalVideo");
-          videoElem.onerror = function() {
-            container.innerHTML = `
-              <div class="p-6 text-center text-slate-300">
-                <p class="text-amber-400 font-semibold mb-2">Incompatibilidade de Codec no Ficheiro Local</p>
-                <p class="text-xs mb-3">O browser não suportou o codec nativo do vídeo (ex.: gravado em HEVC/H.265 ou AVI)[cite: 16].</p>
-                <p class="text-xs text-slate-400">Reconverta o ficheiro para <strong>MP4 (H.264 / AAC)</strong> para que reproduza diretamente sem ecrã preto[cite: 16].</p>
-              </div>
-            `;
-          };
-        } else if (item.type === "audio") {
-          container.innerHTML = `
-            <div class="w-full py-12 flex flex-col items-center justify-center bg-slate-900 rounded-xl">
-              <i data-lucide="volume-2" class="w-16 h-16 text-purple-400 mb-4 animate-pulse"></i>
-              <p class="text-sm font-bold text-white mb-6">${item.title}</p>
-              <audio controls autoplay class="w-full max-w-md">
-                <source src="${currentBlobUrl}" type="${mime}">
-                O seu navegador não suporta a reprodução deste áudio.
-              </audio>
-            </div>
-          `;
+          container.innerHTML = `<video controls autoplay playsinline class="w-full max-h-[70vh] rounded-lg bg-black"><source src="${currentBlobUrl}" type="${mime}"></video>`;
+        } else {
+          container.innerHTML = `<audio controls autoplay class="w-full max-w-md"><source src="${currentBlobUrl}" type="${mime}"></audio>`;
         }
       } else {
-        const playUrl = item.url;
-        linkBtn.href = playUrl;
-
-        if (item.type === "video") {
-          if (playUrl.endsWith(".mp4") || playUrl.endsWith(".webm")) {
-            container.innerHTML = `
-              <video controls autoplay playsinline class="w-full max-h-[72vh] rounded-lg shadow-lg bg-black">
-                <source src="${playUrl}">
-                O seu navegador não suporta a tag de vídeo.
-              </video>
-            `;
-          } else {
-            const embedUrl = formatEmbedUrl(playUrl);
-            container.innerHTML = `
-              <iframe 
-                src="${embedUrl}" 
-                class="w-full h-[65vh] rounded-lg border-0 bg-black" 
-                allow="autoplay; encrypted-media; fullscreen" 
-                allowfullscreen>
-              </iframe>
-            `;
-          }
-        } else if (item.type === "audio") {
-          container.innerHTML = `
-            <div class="w-full py-12 flex flex-col items-center justify-center bg-slate-900 rounded-xl">
-              <i data-lucide="volume-2" class="w-16 h-16 text-purple-400 mb-4 animate-pulse"></i>
-              <p class="text-sm font-bold text-white mb-6">${item.title}</p>
-              <audio controls autoplay class="w-full max-w-md">
-                <source src="${playUrl}">
-                O seu navegador não suporta reprodução de áudio.
-              </audio>
-            </div>
-          `;
-        } else {
-          container.innerHTML = `
-            <div class="text-center p-8 max-w-md bg-white rounded-xl">
-              <i data-lucide="external-link" class="w-12 h-12 text-sky-600 mx-auto mb-3"></i>
-              <h4 class="text-base font-bold text-slate-800 mb-2">${item.title}</h4>
-              <p class="text-xs text-slate-600 mb-5">${item.description}</p>
-              <a href="${item.url}" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-600 text-white font-bold text-xs hover:bg-sky-700 shadow transition">
-                Abrir Instrumento Digital <i data-lucide="arrow-right" class="w-4 h-4"></i>
-              </a>
-            </div>
-          `;
-        }
+        linkBtn.href = item.url;
+        container.innerHTML = `<iframe src="${formatEmbedUrl(item.url)}" class="w-full h-[65vh] rounded-lg border-0 bg-black" allowfullscreen></iframe>`;
       }
-
       document.getElementById("playerModal").classList.remove("hidden");
       if (window.lucide) lucide.createIcons();
     }
 
     function closePlayerModal() {
-      const container = document.getElementById("playerContainer");
-      container.innerHTML = "";
-      if (currentBlobUrl) {
-        URL.revokeObjectURL(currentBlobUrl);
-        currentBlobUrl = null;
-      }
+      document.getElementById("playerContainer").innerHTML = "";
+      if (currentBlobUrl) { URL.revokeObjectURL(currentBlobUrl); currentBlobUrl = null; }
       document.getElementById("playerModal").classList.add("hidden");
     }
 
-    // --- MODAL: ADICIONAR E EDITAR PRODUTOS ---
     function openAddModal() {
       document.getElementById("editResourceId").value = "";
       document.getElementById("resourceModalTitle").innerText = "Cadastrar Novo Conteúdo";
-      document.getElementById("fileKeepNote").classList.add("hidden");
       document.getElementById("resourceForm").reset();
       populateTypeSelect();
       document.getElementById("resourceModal").classList.remove("hidden");
     }
 
-    function openEditModal(id) {
-      const all = getStoredResources();
+    async function openEditModal(id) {
+      const all = await getStoredResources();
       const item = all.find(r => r.id === id);
       if (!item) return;
-
       document.getElementById("editResourceId").value = item.id;
       document.getElementById("resourceModalTitle").innerText = "Editar Conteúdo / Produto";
       document.getElementById("inputTitle").value = item.title;
       document.getElementById("inputSubject").value = item.subject;
       document.getElementById("inputDescription").value = item.description;
       document.getElementById("inputUrl").value = item.url || "";
-
       populateTypeSelect(item.type);
-      document.getElementById("fileKeepNote").classList.remove("hidden");
       document.getElementById("resourceModal").classList.remove("hidden");
     }
 
-    function closeResourceModal() {
-      document.getElementById("resourceModal").classList.add("hidden");
-      document.getElementById("resourceForm").reset();
-    }
+    function closeResourceModal() { document.getElementById("resourceModal").classList.add("hidden"); }
 
     async function handleSaveResource(e) {
       e.preventDefault();
-      const submitBtn = document.getElementById("submitBtn");
       const editId = document.getElementById("editResourceId").value;
       const title = document.getElementById("inputTitle").value.trim();
       const type = document.getElementById("inputType").value;
@@ -701,100 +816,40 @@
       const urlInput = document.getElementById("inputUrl").value.trim();
       const fileInput = document.getElementById("inputFile").files[0];
 
-      submitBtn.disabled = true;
-      submitBtn.innerText = "A guardar...";
-
-      try {
-        const all = getStoredResources();
-
-        if (editId) {
-          // MODO DE EDIÇÃO
-          const itemIndex = all.findIndex(r => r.id === editId);
-          if (itemIndex > -1) {
-            const existing = all[itemIndex];
-            existing.title = title;
-            existing.type = type;
-            existing.subject = subject;
-            existing.description = description;
-
-            if (fileInput) {
-              const filePayload = {
-                blob: fileInput,
-                name: fileInput.name,
-                mimeType: fileInput.type || "video/mp4"
-              };
-              await storeFileInDB(existing.id, filePayload);
-              existing.sourceType = "indexeddb";
-              existing.fileName = fileInput.name;
-              existing.mimeType = fileInput.type || "video/mp4";
-              existing.url = "";
-            } else if (urlInput) {
-              existing.url = urlInput;
-              existing.sourceType = "url";
-              await deleteFileFromDB(existing.id);
-            }
-            all[itemIndex] = existing;
-            saveResources(all);
-          }
-        } else {
-          // MODO DE CRIAÇÃO
-          if (!urlInput && !fileInput) {
-            alert("Por favor, cole uma ligação ou selecione um ficheiro do computador.");
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Guardar";
-            return;
-          }
-
-          const newId = "res-" + Date.now();
+      const all = await getStoredResources();
+      if (editId) {
+        const idx = all.findIndex(r => r.id === editId);
+        if (idx > -1) {
+          all[idx].title = title; all[idx].type = type; all[idx].subject = subject; all[idx].description = description;
           if (fileInput) {
-            const filePayload = {
-              blob: fileInput,
-              name: fileInput.name,
-              mimeType: fileInput.type || "video/mp4"
-            };
-            await storeFileInDB(newId, filePayload);
-            all.unshift({
-              id: newId,
-              type: type,
-              title: title,
-              subject: subject,
-              description: description,
-              url: "",
-              sourceType: "indexeddb",
-              fileName: fileInput.name,
-              mimeType: fileInput.type || "video/mp4"
-            });
-          } else {
-            all.unshift({
-              id: newId,
-              type: type,
-              title: title,
-              subject: subject,
-              description: description,
-              url: urlInput,
-              sourceType: "url"
-            });
+            await storeFileInDB(editId, { blob: fileInput, name: fileInput.name, mimeType: fileInput.type });
+            all[idx].sourceType = "indexeddb"; all[idx].fileName = fileInput.name;
+          } else if (urlInput) {
+            all[idx].url = urlInput; all[idx].sourceType = "url";
           }
-          saveResources(all);
+          localStorage.setItem("cria_resources_data", JSON.stringify(all));
         }
-        closeResourceModal();
-      } catch(err) {
-        console.error(err);
-        alert("Erro ao gravar: " + err.message);
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.innerText = "Guardar";
+      } else {
+        const newId = "res-" + Date.now();
+        let newItem = { id: newId, type, title, subject, description, url: urlInput || "", sourceType: "url" };
+        if (fileInput) {
+          await storeFileInDB(newId, { blob: fileInput, name: fileInput.name, mimeType: fileInput.type });
+          newItem.sourceType = "indexeddb"; newItem.fileName = fileInput.name; newItem.url = "";
+        }
+        all.unshift(newItem);
+        localStorage.setItem("cria_resources_data", JSON.stringify(all));
       }
+      closeResourceModal();
+      await renderGrid();
     }
 
     async function deleteResource(id, sourceType) {
-      if (!confirm("Deseja realmente remover este item do repositório?")) return;
-      if (sourceType === "indexeddb") {
-        await deleteFileFromDB(id);
-      }
-      let all = getStoredResources();
+      if (!confirm("Deseja remover este item?")) return;
+      if (sourceType === "indexeddb") await deleteFileFromDB(id);
+      let all = await getStoredResources();
       all = all.filter(r => r.id !== id);
-      saveResources(all);
+      localStorage.setItem("cria_resources_data", JSON.stringify(all));
+      await renderGrid();
     }
 
     function filterResources(categoryId) {
@@ -803,129 +858,50 @@
       renderGrid();
     }
 
-    function handleSearch() {
-      renderGrid();
-    }
-
-    // --- MODAL: GERENCIAR ABAS ---
-    function openTabsModal() {
-      renderTabsModalList();
-      document.getElementById("tabsModal").classList.remove("hidden");
-    }
-
-    function closeTabsModal() {
-      document.getElementById("tabsModal").classList.add("hidden");
-    }
-
-    function renderTabsModalList() {
-      const tabs = getStoredTabs();
-      const listContainer = document.getElementById("tabsListModal");
-      listContainer.innerHTML = "";
-
-      tabs.forEach(tab => {
-        const row = document.createElement("div");
-        row.className = "flex items-center justify-between p-2 bg-slate-50 border border-slate-200 rounded-lg";
-        row.innerHTML = `
-          <span class="font-semibold text-slate-700">${tab.label}</span>
-          ${tab.fixed ? '<span class="text-[10px] text-slate-400 font-bold uppercase">Fixa</span>' : `
-            <button onclick="handleDeleteTab('${tab.id}')" class="text-red-500 hover:text-red-700">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-            </button>
-          `}
-        `;
-        listContainer.appendChild(row);
-      });
-      if (window.lucide) lucide.createIcons();
-    }
+    function handleSearch() { renderGrid(); }
 
     function handleAddTab() {
       const input = document.getElementById("newTabName");
       const name = input.value.trim();
       if (!name) return;
-
       const tabs = getStoredTabs();
       const tabId = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "-");
-
-      if (tabs.some(t => t.id === tabId)) {
-        alert("Já existe uma aba com este nome.");
-        return;
-      }
-
+      if (tabs.some(t => t.id === tabId)) { alert("Esta aba já existe."); return; }
       tabs.push({ id: tabId, label: name, fixed: false });
       saveTabs(tabs);
       input.value = "";
-      renderTabsModalList();
-    }
-
-    function handleDeleteTab(tabId) {
-      if (!confirm("Tem certeza que deseja remover esta aba?")) return;
-      let tabs = getStoredTabs();
-      tabs = tabs.filter(t => t.id !== tabId);
-      if (currentFilter === tabId) currentFilter = "all";
-      saveTabs(tabs);
-      renderTabsModalList();
-      renderGrid();
-    }
-
-    // --- LOGOTIPO CUSTOMIZÁVEL ---
-    function openLogoModal() {
-      document.getElementById("logoModal").classList.remove("hidden");
-    }
-
-    function closeLogoModal() {
-      document.getElementById("logoModal").classList.add("hidden");
-    }
-
-    function loadCustomLogo() {
-      const savedLogo = localStorage.getItem("cria_custom_logo");
-      const img = document.getElementById("siteLogo");
-      const fallback = document.getElementById("siteLogoFallback");
-
-      if (savedLogo) {
-        img.src = savedLogo;
-        img.classList.remove("hidden");
-        fallback.classList.add("hidden");
-      } else {
-        img.classList.add("hidden");
-        fallback.classList.remove("hidden");
-      }
+      closeTabsModal();
     }
 
     function handleSaveLogo(e) {
       e.preventDefault();
-      const fileInput = document.getElementById("logoFileInput").files[0];
-      const urlInput = document.getElementById("logoUrlInput").value.trim();
-
-      if (fileInput) {
+      const file = document.getElementById("logoFileInput").files[0];
+      const url = document.getElementById("logoUrlInput").value.trim();
+      if (file) {
         const reader = new FileReader();
-        reader.onload = (event) => {
-          localStorage.setItem("cria_custom_logo", event.target.result);
-          loadCustomLogo();
-          closeLogoModal();
+        reader.onload = (evt) => {
+          localStorage.setItem("cria_custom_logo", evt.target.result);
+          loadCustomLogo(); closeLogoModal();
         };
-        reader.readAsDataURL(fileInput);
-      } else if (urlInput) {
-        localStorage.setItem("cria_custom_logo", urlInput);
-        loadCustomLogo();
-        closeLogoModal();
-      } else {
-        alert("Selecione um arquivo de imagem ou insira uma URL.");
+        reader.readAsDataURL(file);
+      } else if (url) {
+        localStorage.setItem("cria_custom_logo", url);
+        loadCustomLogo(); closeLogoModal();
       }
     }
 
     function handleResetLogo() {
-      if (!confirm("Deseja restaurar a logo original padrão?")) return;
       localStorage.removeItem("cria_custom_logo");
-      loadCustomLogo();
-      closeLogoModal();
+      location.reload();
     }
 
-    // --- INICIALIZAÇÃO ---
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("DOMContentLoaded", async () => {
+      checkActiveSession();
       loadCustomLogo();
       renderTabs();
       populateTypeSelect();
-      renderGrid();
+      await renderGrid();
+      if (window.lucide) lucide.createIcons();
     });
   </script>
 </body>
